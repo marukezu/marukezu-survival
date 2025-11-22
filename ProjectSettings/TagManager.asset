@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Shuriken
+  - Enemy
+  - Flecha
+  - OrbAttractor
+  - Fireball
+  - Explosao
+  - Icicle
+  - Thunder
+  - Axe Throw
+  - Pierce Dagger
+  - Corte Circular
+  - Thunder Pulse
+  - Fire Elemental
+  - Fire Elemental Fire Spark
+  - Tornado Fury
+  - Meteor
+  - Ignis Arrow
+  - Rain Of Arrow
+  - The Eight Kunais
+  - Multiple Shot
+  - Poison Kunai
+  - Terremoto
+  - Shield Throw
+  - Cyclone
+  - TerrenoColisor
+  - TerrenoColisao
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - COLISOR
+  - Armas
+  - TerrenoColisor
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: "Ch\xE3o"
+    uniqueID: 2050100469
+    locked: 0
+  - name: Creatures
+    uniqueID: 3046843599
+    locked: 0
+  - name: Summons
+    uniqueID: 2298900649
+    locked: 0
+  - name: Effects
+    uniqueID: 2413691221
+    locked: 0
+  - name: Effects Upper
+    uniqueID: 3861688465
+    locked: 0

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 8f546574912c4ea46b831cf6a9e02e6b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shurikenPrefab: {fileID: 2415058504775167823, guid: c6e2d7edb62cdd14484fe6e9ea824182, type: 3}
+  - _flechaPrefab: {fileID: 1966066181066729232, guid: 1c4741acf43b6f0428973bc41c870028, type: 3}
+  - _fireballPrefab: {fileID: 2518228585274746535, guid: dca5b091d45c5874a86596613bc3aeab, type: 3}
+  - _iciclePrefab: {fileID: 1057518248913721998, guid: ad94dbf746c90a64db44da31edc9ed5d, type: 3}
+  - _thunderPrefab: {fileID: 6508502185387570301, guid: f5bbae2a30c247743955c8ea8b9729c5, type: 3}
+  - _axeThrowPrefab: {fileID: 550981108683929767, guid: 7ac04e2a9234d534ca7492b2767436da, type: 3}
+  - _pierceDaggerPrefab: {fileID: 2284126044866975905, guid: ee345ccdfcf8d7248ab2e9fd328462a9, type: 3}
+  - corteCircularPrefab: {fileID: 5558973647174993024, guid: 31eac32d9c22ad348b1e20ff24625db9, type: 3}
+  - thunderPulsePrefab: {fileID: 1843667439240380175, guid: da47edc1172d885418dff1a902dded79, type: 3}
+  - fireElementalPrefab: {fileID: 8921281734431348959, guid: be846ce954d3147479a910885d187f71, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

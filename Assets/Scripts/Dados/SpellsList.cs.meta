@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: e64abb9f43662504a9dde2b6d1efb306
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shurikenSprite: {fileID: 21300000, guid: b4888139de62aee41908c2c32e46dc76, type: 3}
+  - flechaSprite: {fileID: 21300000, guid: 388ae17f3732dcc4da045f28130d7240, type: 3}
+  - fireballSprite: {fileID: 21300000, guid: 674bec295ea07b04bba53db53f2f0b96, type: 3}
+  - explosionSprite: {fileID: 21300000, guid: a0f032a88fbf842428687183f08f1923, type: 3}
+  - icicleSprite: {fileID: 21300000, guid: 7d06811b4769f814884d72065181d9c3, type: 3}
+  - thunderSprite: {fileID: 21300000, guid: d033485083a2d06498fb2cd86835bdbf, type: 3}
+  - axeThrowSprite: {fileID: 21300000, guid: 3dd68f07372df1240841126c73a19dbf, type: 3}
+  - pierceDaggerSprite: {fileID: 21300000, guid: fe997171dcdd7554ea45bb72f0dcc6a4, type: 3}
+  - corteCircularSprite: {fileID: 21300000, guid: cb4724932cc340e4fbc726402085fd66, type: 3}
+  - thunderPulseSprite: {fileID: 21300000, guid: a9586f25ec055f440ac87b2764a0bb43, type: 3}
+  - fireElementalSprite: {instanceID: 0}
+  - gauntletSprite: {fileID: 21300000, guid: 06099ec920615f24aa323191c39589a0, type: 3}
+  - clockSprite: {fileID: 21300000, guid: 853ffcc90fc24c84ca7ec988aa62be3a, type: 3}
+  - bootsSprite: {fileID: 21300000, guid: 0cad0573cb1d9fe4fb7a197760f0943b, type: 3}
+  - handSprite: {fileID: 21300000, guid: abbc0f111c6307842bf30e4fe1b084c7, type: 3}
+  - hearthSprite: {fileID: 21300000, guid: 2875ed6867bbd4d4d840bca6f7412b97, type: 3}
+  - noneSprite: {fileID: 21300000, guid: dc93e5ddd3b811d4a9aa7393beb15907, type: 3}
+  - noneAtivaSprite: {fileID: 21300000, guid: 96143d22a97cd044ead5ddfd21c0ce1a, type: 3}
+  - nonePassivaSprite: {fileID: 21300000, guid: 5192f39e3dfbb614d9948e76a90531c4, type: 3}
+  - moneySprite: {fileID: 21300000, guid: c9f2af70682ecab42ac516c6b24722b4, type: 3}
+  - rerollSprite: {fileID: 21300000, guid: 09d89b237541c804abb9f8f515bf3399, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
