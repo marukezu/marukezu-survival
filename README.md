@@ -147,6 +147,16 @@ Efeitos sonoros
 
 Tudo implementado diretamente na Unity.
 
+🌍 Idiomas Disponíveis
+
+O jogo possui suporte a dois idiomas:
+
+🇧🇷 Português (Brasil)
+
+🇺🇸 Inglês
+
+O idioma pode ser selecionado ao iniciar o jogo.
+
 🛠️ Tecnologias Utilizadas
 
 Unity (C#)
@@ -193,5 +203,5 @@ Abra usando a versão recomendada da Unity (colocada em ProjectSettings/ProjectV
 
 📜 Licença
 
-Uso livre apenas para fins de análise, estudo e portfólio.
-Não é permitido redistribuir o jogo comercialmente.
+Todos os direitos reservados.
+O código e os assets podem ser analisados e estudados, mas não podem ser usados, modificados, redistribuídos ou comercializados sem autorização.
