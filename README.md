@@ -63,7 +63,7 @@ Após alguns segundos, os orbes são atraídos automaticamente para o jogador
 
 Ao upar de nível, escolha novas habilidades e distribua 5 pontos de talento
 
-<p align="center"> <img src="screenshots/mkz-survival-gameplay.gif" alt="Gameplay - Marukezu Survival" width="800"/> </p>
+<p align="center"> <img src="https://imgur.com/a/JI43NbG" alt="Gameplay - Marukezu Survival" width="800"/> </p>
 🖼️ Galeria de Screenshots
 <p align="center"> <img src="screenshots/mkz-survival-mainmenu.png" alt="Menu Principal" width="350"/> <img src="screenshots/mkz-survival-heroSelect.png" alt="Seleção de Personagem" width="350"/> </p> <p align="center"> <img src="screenshots/mkz-survival-heroUpgrades.png" alt="Upgrades de Personagem" width="350"/> <img src="screenshots/mkz-survival-spellSelect.png" alt="Seleção de Habilidades" width="350"/> </p> <p align="center"> <img src="screenshots/mkz-survival-shop.png" alt="Loja de Poções e Upgrades" width="350"/> </p>
 
