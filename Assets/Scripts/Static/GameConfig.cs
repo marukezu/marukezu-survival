@@ -5,7 +5,7 @@ public static class GameConfig
     // ===========================================================================
     public static LanguageManager.GameLanguage _gameIdioma = LanguageManager.GameLanguage.PTBR;
     public static bool _selecionouIdioma = false;
-    public static string _gameVersion = "Alpha 0.6";
+    public static string _gameVersion = "Early Preview Build";
     public static bool _androidMode = false;
     public static bool _debugMode = true;
 
