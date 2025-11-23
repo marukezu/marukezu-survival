@@ -151,11 +151,18 @@ Tudo implementado diretamente na Unity.
 
 O jogo possui suporte a dois idiomas:
 
-🇧🇷 Português (Brasil)
+🇧🇷 Português (Brasil) (100%)
 
-🇺🇸 Inglês
+🇺🇸 Inglês (90%)
 
 O idioma pode ser selecionado ao iniciar o jogo.
+
+💾 Sistema de Salvamento
+
+O Marukezu Survival utiliza o sistema nativo PlayerPrefs da Unity para salvar os dados do jogador.
+Isso inclui progresso de personagens, cartas obtidas, configurações e outros elementos de progressão.
+
+O save é automático e ocorre sempre que o jogador realiza ações importantes, garantindo que o progresso não seja perdido ao fechar o jogo.
 
 🛠️ Tecnologias Utilizadas
 
