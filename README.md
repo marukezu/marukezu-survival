@@ -232,25 +232,19 @@ O projeto foi estruturado com foco em organização e expansão:
 
 - Sistema de localização baseado em chave-valor
 
-- HUD responsiva adaptável para múltiplas resoluções (PC e diferentes aspect ratios)
+- Sistema de UI baseado em anchors e layout groups preparados para múltiplos aspect ratios (16:9, 18:9, 21:9)
 
 ---
 
 ### 🛠 Tecnologias Utilizadas
 
-- Unity (C#)
-
+- Unity 2022.x
+- C# orientado a objetos
+- Arquitetura baseada em composição
 - State Machines
-
-- Sistema modular de habilidades
-
-- Sistema de loot e XP
-
-- Eventos randômicos temporizados
-
-- UI/UX personalizada
-
-- Partículas e efeitos sonoros
+- Sistema de eventos desacoplado
+- Localização chave-valor
+- UI responsiva com Canvas Scaler e Layout Groups
 
 ---
 
