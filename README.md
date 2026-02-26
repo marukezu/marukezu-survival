@@ -57,7 +57,7 @@ Ao subir de nível:
 
 O objetivo é sobreviver o máximo possível enquanto constrói uma build eficiente.
 
-<p align="center"> <img src="screenshots/mkz-survival-gameplay.gif" alt="Gameplay - Marukezu Survival" width="800"/> </p>
+<p align="center"> <img src="screenshots/gameplay_01.mp4" alt="Gameplay - Marukezu Survival" width="800"/> </p>
 🧙 Personagens
 
 Atualmente existem 3 personagens (2 jogáveis):
