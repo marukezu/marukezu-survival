@@ -1,41 +1,96 @@
-Marukezu Survival
-Um rogue-like medieval de sobrevivência inspirado em Vampire Survivors
+# 🏹 Marukezu Survival
+### A Modular Medieval Rogue-Like Framework
 
-## 📖 Descrição
+Marukezu Survival é um rogue-like medieval de sobrevivência desenvolvido em Unity (C#), focado em arquitetura modular, sistemas escaláveis de habilidades e progressão dinâmica baseada em builds.
 
-Marukezu Survival é um jogo rogue-like de sobrevivência, ambientado em uma floresta medieval chuvosa, onde hordas de criaturas avançam constantemente contra o jogador.
-Seu único objetivo: sobreviver o máximo de tempo possível enquanto evolui habilidades, constrói builds poderosas e enfrenta eventos imprevisíveis.
+Inspirado na estrutura de jogos como Vampire Survivors, o projeto vai além da mecânica básica de sobrevivência ao explorar:
 
-O jogo foi desenvolvido na Unity (C#) e é parte do meu portfólio como desenvolvedor.
-Ele conta com sistemas completos de habilidades, talentos, personagens, mapas, inimigos e eventos dinâmicos.
+Sistema de habilidades combináveis
 
-## 🧙 Personagens
+Árvore de talentos desacoplada
 
-Atualmente existem 3 personagens, sendo 2 jogáveis:
+Eventos dinâmicos temporizados
 
-✔️ Zephyr — Mago (Desbloqueado)
+Progressão baseada em cartas
 
-Especialista em Fogo, Gelo e Raio
+Sistema multilíngue integrado
 
-Pode misturar elementos livremente
+Estrutura preparada para expansão futura
 
-Build depende da combinação entre habilidades + talentos escolhidos
+Este projeto faz parte do meu portfólio como estudo avançado de design de sistemas e arquitetura em Unity.
+
+---
+
+### 🎯 Objetivo do Projeto
+
+O foco principal não é apenas a experiência jogável, mas a construção de um framework robusto para:
+
+Expansão modular de personagens
+
+Combinação dinâmica de habilidades
+
+Estrutura escalável de talentos
+
+Eventos randômicos controlados por tempo
+
+Progressão persistente entre runs
+
+Organização arquitetural preparada para crescimento
+
+---
+
+### 🎮 Gameplay
+
+Movimentação livre em mapa contínuo
+
+Habilidades automáticas baseadas em cooldown
+
+Inimigos perseguem constantemente o jogador
+
+Sistema de XP via orbes coletáveis
+
+Ao subir de nível:
+
+Escolha uma nova habilidade
+
+Receba 5 pontos para distribuir na árvore de talentos
+
+O objetivo é sobreviver o máximo possível enquanto constrói uma build eficiente.
+
+<p align="center"> <img src="screenshots/mkz-survival-gameplay.gif" alt="Gameplay - Marukezu Survival" width="800"/> </p>
+🧙 Personagens
+
+Atualmente existem 3 personagens (2 jogáveis):
+
+✔️ Zephyr — Mago
+
+Especialista em três elementos:
+
+🔥 Fogo — dano contínuo e explosões
+
+❄️ Gelo — controle e lentidão
+
+⚡ Raio — ataques rápidos e críticos
+
+Permite livre combinação de elementos, incentivando builds híbridas.
 
 ✔️ Kael — Ladino (Desbloqueável)
 
-Possui habilidades Físicas e à Distância
+🏹 Ataques à distância
+
+🗡️ Combate corpo a corpo
 
 Estilo rápido e agressivo
 
 ❌ Broghar — Anão Guerreiro (Em desenvolvimento)
 
-Ainda não possui habilidades implementadas
+Planejado para foco em resistência e força bruta
 
-Não jogável por enquanto
+Ainda não jogável
 
-## 👾 Inimigos
+---
 
-A floresta está repleta de ameaças:
+### 👾 Inimigos
 
 Zumbis
 
@@ -49,177 +104,187 @@ Criatura-árvore
 
 Bosses durante eventos
 
-Todos os inimigos perseguem diretamente o jogador e causam dano ao encostar — como no Vampire Survivors.
+Todos os inimigos utilizam comportamento de perseguição direta e causam dano por contato (bosses possuem habilidades únicas).
 
-## 🎮 Gameplay
+---
 
-Passeie livremente pela fase e sobreviva às ondas de inimigos
+### 🔥 Sistema de Habilidades
 
-Suas habilidades são automáticas, ativando por tempo
+Cada personagem possui conjunto próprio de habilidades.
 
-Ao matar inimigos, eles dropam orbes de experiência
+Características do sistema:
 
-Após alguns segundos, os orbes são atraídos automaticamente para o jogador
+Habilidades ativadas automaticamente por tempo
 
-Ao upar de nível, escolha novas habilidades e distribua 5 pontos de talento
+Modularidade para expansão futura
 
-<p align="center"> <img src="screenshots/mkz-survival-gameplay.gif" alt="Gameplay - Marukezu Survival" width="800"/> </p>
-## 🖼️ Galeria de Screenshots
-<p align="center"> <img src="screenshots/mkz-survival-mainmenu.png" alt="Menu Principal" width="350"/> <img src="screenshots/mkz-survival-heroSelect.png" alt="Seleção de Personagem" width="350"/> </p> <p align="center"> <img src="screenshots/mkz-survival-heroUpgrades.png" alt="Upgrades de Personagem" width="350"/> <img src="screenshots/mkz-survival-spellSelect.png" alt="Seleção de Habilidades" width="350"/> </p> <p align="center"> <img src="screenshots/mkz-survival-shop.png" alt="Loja de Poções e Upgrades" width="350"/> </p>
+Separação entre lógica da habilidade e personagem
 
-## 🔥 Sistema de Habilidades
+Combinação livre entre elementos (no caso do Zephyr)
 
-Cada personagem possui seu próprio conjunto de habilidades.
+O design permite criação de builds altamente distintas.
 
-Zephyr
+---
 
-Domina três elementos:
+### ⭐ Sistema de Talentos
 
-🔥 Fogo — dano contínuo, explosões
+Ao subir de nível, o jogador acessa o painel de seleção de novas habilidades, podendo escolher entre os elementos disponívels do seu heroi. Em seguida, recebe acesso a árvore de talentos.
 
-❄️ Gelo — controle, lentidão
+Cada nível concede 5 pontos de talento, que podem ser investidos em:
 
-⚡ Raio — ataques rápidos, críticos
+Aumento nos status base do hero (pontos de vida, velocidade de movimento, dano base, redução de recarga de habilidades)
 
-O jogador pode montar qualquer combinação desses elementos, criando builds únicas.
+Aumento de dano elemental
 
-Kael
+Chances de acertos (Crítico/Empalamento)
 
-🏹 À distância
+Multiplicadores das chances
 
-🗡️ Corpo a corpo (físico)
+Outros modificadores estratégicos
 
-## ⭐ Sistema de Talentos
+O sistema foi projetado para incentivar sinergia entre habilidades e talentos.
 
-Após escolher a habilidade ao subir de nível, abre-se a árvore de talentos.
-Você recebe 5 pontos para investir em bônus como:
+---
 
-Aumento de dano elemental (fogo/gelo/raio)
+### 🎁 Sistema de Cartas & Progressão
 
-Aumento de dano físico
+A cada 1 minuto sobrevivido, o jogador recebe um baú
 
-Maior velocidade de movimento
+Baús concedem cartas
 
-Redução de cooldown
+Cartas são usadas na loja para evoluir personagens permanentemente
 
-Alcance dos ataques
+---
 
-Entre outros
+### 🏪 Loja (Menu Principal)
 
-Os talentos sinergizam com a build escolhida — builds bem montadas fazem enorme diferença.
+Loja de Cartas (progressão permanente)
 
-## 🧪 Poções & Itens
+Loja de Poções (itens para próxima run)
 
-Existem 2 poções que podem ser levadas para a partida:
+---
 
-Poção Explosiva: explode todos os inimigos ao redor
+### 🧪 Poções
 
-Poção de Cura: recupera vida gradualmente (tique a tique)
+Cada run permite levar até 2 poções de cada tipo:
 
-Máximo de 2 poções armazenadas por partida.
+💥 Poção Explosiva — elimina inimigos próximos
 
-## 🗺️ Eventos Aleatórios
+❤️ Poção de Cura — regeneração gradual
 
-A cada 120–150 segundos, ocorre um evento aleatório:
+Sistema preparado para expansão de novos consumíveis.
+
+---
+
+### 🗺️ Eventos Dinâmicos
+
+A cada 120–150 segundos ocorre um evento aleatório:
 
 Spawn de Boss
 
-Aumento temporário da taxa de respawn dos inimigos
+Aumento temporário da taxa de respawn
 
-Novos eventos serão adicionados futuramente.
+Estrutura modular permite adicionar novos eventos futuramente.
 
-## 🎁 Baús & Sistema de Cartas
+---
 
-A cada 1 minuto vivo, o jogador ganha um baú.
-Dentro dele há cartas, usadas para upar o nível do personagem na loja.
+### 🌍 Sistema de Idiomas
 
-🏪 Loja de Upgrades (Menu Principal)
+O jogo possui sistema de localização com suporte atual para:
 
-No menu principal existem:
-
-Loja de cartas: evolui os personagens
-
-Loja de poções: compra poções para usar na próxima run
-
-## 🎵 Áudio
-
-O jogo conta com:
-
-Música ambiente
-
-Efeitos sonoros
-
-Tudo implementado diretamente na Unity.
-
-## 🌍 Idiomas Disponíveis
-
-O jogo possui suporte a dois idiomas:
-
-🇧🇷 Português (Brasil) (100%)
+🇧🇷 Português (100%)
 
 🇺🇸 Inglês (90%)
 
-O idioma pode ser selecionado ao iniciar o jogo.
+O idioma pode ser selecionado no início do jogo.
 
-## 💾 Sistema de Salvamento
+---
 
-O Marukezu Survival utiliza o sistema nativo PlayerPrefs da Unity para salvar os dados do jogador.
-Isso inclui progresso de personagens, cartas obtidas, configurações e outros elementos de progressão.
+### 💾 Sistema de Salvamento
 
-O save é automático e ocorre sempre que o jogador realiza ações importantes, garantindo que o progresso não seja perdido ao fechar o jogo.
+Utiliza o sistema nativo PlayerPrefs da Unity para armazenar:
 
-## 🛠️ Tecnologias Utilizadas
+Progresso de personagens
+
+Cartas adquiridas
+
+Configurações
+
+Dados de progressão
+
+O salvamento ocorre automaticamente após ações importantes.
+
+---
+
+### 🏗 Arquitetura do Projeto
+
+O projeto foi estruturado com foco em organização e expansão:
+
+Separação clara entre lógica de combate e camada visual
+
+Sistema de habilidades modular
+
+Talentos desacoplados do personagem base
+
+Eventos temporizados independentes do loop principal
+
+Estrutura preparada para novos personagens e mapas
+
+Sistema de localização baseado em chave-valor
+
+---
+
+### 🛠 Tecnologias Utilizadas
 
 Unity (C#)
 
 State Machines
 
-Eventos aleatórios
+Sistema modular de habilidades
 
 Sistema de loot e XP
 
-Arquitetura organizada para expansão futura
+Eventos randômicos temporizados
 
-UI/UX Unity
+UI/UX personalizada
 
-Som & Partículas
+Partículas e efeitos sonoros
 
-## 🧩 Como Abrir o Projeto
+---
 
-Baixe ou clone o repositório
+### 🖼️ Galeria
+<p align="center"> <img src="screenshots/mkz-survival-mainmenu.png" width="350"/> <img src="screenshots/mkz-survival-heroSelect.png" width="350"/> </p> <p align="center"> <img src="screenshots/mkz-survival-heroUpgrades.png" width="350"/> <img src="screenshots/mkz-survival-spellSelect.png" width="350"/> </p> <p align="center"> <img src="screenshots/mkz-survival-shop.png" width="350"/> </p>
 
-Abra a Unity Hub
+---
 
-Clique em Add Project
+### 🚀 Roadmap
 
-Selecione a pasta do repositório
+Finalizar Broghar
 
-Abra usando a versão recomendada da Unity (colocada em ProjectSettings/ProjectVersion.txt)
+Novos eventos dinâmicos
 
-## 🚀 Roadmap
+Novas poções
 
- Finalizar Broghar (Anão Guerreiro)
+Novas áreas / mapas
 
- Novos eventos dinâmicos
+Sistema de progressão global permanente
 
- Novas poções
+Novos bosses
 
- Novas áreas / mapas
+---
 
- Novas armas e magias
+### 👨‍💻 Autor
 
- Sistema de progressão global permanente
+Maurício Makimori
+Desenvolvedor independente focado em sistemas escaláveis e prototipagem avançada em Unity.
 
- Mais bosses
+GitHub: https://github.com/marukezu
 
- 
-## 👨‍💻 Autor
+Instagram: https://www.instagram.com/marukesu92/
 
-**Maurício Makimori** – Desenvolvedor independente  
-- GitHub: [marukezu](https://github.com/marukezu)  
-- Instagram: [@marukesu92](https://www.instagram.com/marukesu92/)
+---
 
-## 📜 Licença
+### 📜 Licença
 
 Todos os direitos reservados.
-O código e os assets podem ser analisados e estudados, mas não podem ser usados, modificados, redistribuídos ou comercializados sem autorização.
+O código pode ser analisado para fins de estudo, mas não pode ser utilizado, modificado ou redistribuído sem autorização.
