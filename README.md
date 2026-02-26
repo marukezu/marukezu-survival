@@ -57,6 +57,11 @@ Ao subir de nível:
 
 O objetivo é sobreviver o máximo possível enquanto constrói uma build eficiente.
 
+## 🎥 Gameplay Overview
+
+Uma demonstração da jogabilidade, sistemas de combate e progressão em ação.
+(Clique na imagem, será redirecionado ao YouTube)
+
 <p align="center">
   <a href="https://youtu.be/-IDbH2HIq8k" target="_blank">
     <img src="https://img.youtube.com/vi/-IDbH2HIq8k/maxresdefault.jpg" 
