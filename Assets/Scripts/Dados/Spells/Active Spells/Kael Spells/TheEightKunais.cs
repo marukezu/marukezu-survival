@@ -9,8 +9,8 @@ public class TheEightKunais : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_TheEightKunais;
-        Name = LanguageManager.Get("The Eight Kunais Name");
-        Descricao = LanguageManager.Get("The Eight Kunais Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.TheEightKunais_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.TheEightKunais_Desc);
         BaseDmg = 90;
         DamagePercentPerLevel = 5;
         BaseCooldown = 3f;

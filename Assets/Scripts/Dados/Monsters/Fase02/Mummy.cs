@@ -4,11 +4,12 @@ public class Mummy : Monster
     public Mummy() : base()
     {
         monsterType = MonsterType.MUMMY;
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Mummy_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Mummy Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Mummy_Desc);
 
         // Drops
-        
+
     }
 }

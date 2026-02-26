@@ -9,8 +9,8 @@ public class Meteor : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Meteor;
-        Name = LanguageManager.Get("Meteor Name");
-        Descricao = LanguageManager.Get("Meteor Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Meteor_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Meteor_Desc);
         BaseDmg = 95f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 6f;

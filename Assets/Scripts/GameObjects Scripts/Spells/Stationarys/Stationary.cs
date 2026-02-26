@@ -7,8 +7,9 @@ using UnityEngine;
 
 public class Stationary : MonoBehaviour
 {
+    [Header("====== Configuration ======")]
     protected float duracao = 0f;
-    protected bool selfTarget = false;
+    public bool selfTarget = false;
 
     [HideInInspector] public Creature target;
     [HideInInspector] public Spell spell;

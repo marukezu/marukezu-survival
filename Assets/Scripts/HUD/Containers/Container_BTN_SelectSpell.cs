@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Container_BTN_SelectSpell : Panel
+public class Container_BTN_SelectSpell : Panel, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("====== Painel Pai ======")]
     private Panel PanelPai;
@@ -24,8 +25,8 @@ public class Container_BTN_SelectSpell : Panel
     public Image IMG_SpellCondition; // Condição que a spell aplica
     public Image IMG_SpellCooldown;
 
+    private GameObject Tooltip_SpellInfo; // Armazena o Tooltip gerado ao colocar o mouse em cima desse container.
     private Button BTN_ThisButton;
-
     private Spell spell;
 
     public override void AbrirPainel(object param1 = null, object param2 = null, object param3 = null)
@@ -97,6 +98,10 @@ public class Container_BTN_SelectSpell : Panel
             case Spell.CombatType.PROTECTION:
                 IMG_SpellMainPotency.sprite = SpritesManager.Instance.spellSprites.Spell_CombatType_Protection;
                 break;
+
+            case Spell.CombatType.SUMMON:
+                IMG_SpellMainPotency.sprite = SpritesManager.Instance.spellSprites.Spell_CombatType_Summon;
+                break;
         }
 
         // Define Imagem do Tipo de Target
@@ -121,7 +126,10 @@ public class Container_BTN_SelectSpell : Panel
 
     private void BTN_ThisButton_Action()
     {
-        // Se o painel pai for o painel da seleção de spell inicial (Esse painel é filho do painel pai).
+        // Destroi o Tooltip da spell.
+        DestroyTooltip();
+
+        // Se o painel pai for o painel da seleção de spell inicial.
         if (PanelPai is Panel_MainMenu_Play_SelecaoSpellInicial painelSpellInicial)
         {
             MenuPrincipal_SelectSpell_Action(painelSpellInicial);
@@ -129,7 +137,7 @@ public class Container_BTN_SelectSpell : Panel
             return;
         }
 
-        // Se o painel pai for o painel da seleção de spell durante a gameplay, antigo painel level up (Esse painel é filho do painel pai).
+        // Se o painel pai for o painel da seleção de spell durante a gameplay.
         if (PanelPai is Panel_GamePlay_ChooseNewSpell painelChooseNewSpell)
         {
             GamePlay_SelectNewSpell_Action(painelChooseNewSpell);
@@ -234,5 +242,40 @@ public class Container_BTN_SelectSpell : Panel
         }
 
         return false;
+    }
+
+    // ===============================================================
+    // ====================== MOUSE ENTER/EXIT =======================
+    // ===============================================================
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (Tooltip_SpellInfo != null) return;
+
+        Tooltip_SpellInfo = ContainerManager.Instance.InstantiateAndReturnContainer(
+            ContainerManager.ContainerType.TOOLTIP_SPELLS,
+            ContainerManager.Instance.defaultRoot
+        );
+
+        var script = Tooltip_SpellInfo.GetComponent<Panel_Tooltip_Spells>();
+        script.InicializarPainel(spell);
+
+        // esconde o cursor
+        Cursor.visible = false;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (Tooltip_SpellInfo == null) return;
+
+        DestroyTooltip();
+    }
+
+    private void DestroyTooltip()
+    {
+        Destroy(Tooltip_SpellInfo);
+        Tooltip_SpellInfo = null;
+
+        // volta o cursor
+        Cursor.visible = true;
     }
 }

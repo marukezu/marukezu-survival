@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,133 +7,148 @@ public class Hero_Talents
     public enum TalentType
     {
         // Damage
-        Brutamontes,
-        Piromaniaco,
-        Tesla,
-        ToqueCongelante,
-        AtiradorElite,
-        Pestilento,
+        Fisico,
+        Fogo,
+        Eletrico,
+        Gelo,
+        Distancia,
+        Veneno,
 
-        // Status
-        PassoLigeiro,
-        PeleFerro,
-        Apressado
+        // Status Base
+        Dano,
+        VelMovimento,
+        VidaMaxima,
+        TempoRecarga,
+
+        // Chances
+        ChanceCritica,
+        ChanceEmpalamento,
+
+        // Multiplicadores
+        MultCritico,
     }
 
     public int PontosTalentos { get; private set; } = 0;
+    public const int TALENTOS_POR_LEVEL = 5;
+
+    // ✅ Level de cada talento (escala pra 200 fácil)
+    private readonly Dictionary<TalentType, int> _levels = new();
+
+    // ✅ Config de cada talento (max e “buff base” etc.)
+    private static readonly Dictionary<TalentType, TalentConfig> _config = new()
+    {
+        // Elementais
+        { TalentType.Fisico,                new TalentConfig(maxLevel: 1000, baseBuff: 2f,   cost: 1) },
+        { TalentType.Fogo,                  new TalentConfig(maxLevel: 1000, baseBuff: 2f,   cost: 1) },
+        { TalentType.Eletrico,              new TalentConfig(maxLevel: 1000, baseBuff: 2f,   cost: 1) },
+        { TalentType.Gelo,                  new TalentConfig(maxLevel: 1000, baseBuff: 2f,   cost: 1) },
+        { TalentType.Distancia,             new TalentConfig(maxLevel: 1000, baseBuff: 2f,   cost: 1) },
+        { TalentType.Veneno,                new TalentConfig(maxLevel: 1000, baseBuff: 2f,   cost: 1) },
+
+        // Status Base
+        { TalentType.Dano,                  new TalentConfig(maxLevel: 1000, baseBuff: 1f,   cost: 1) },
+        { TalentType.VelMovimento,          new TalentConfig(maxLevel: 1000, baseBuff: 0.25f,cost: 1) },
+        { TalentType.VidaMaxima,            new TalentConfig(maxLevel: 1000, baseBuff: 1f,   cost: 1) },
+        { TalentType.TempoRecarga,          new TalentConfig(maxLevel: 100,  baseBuff: 0.5f, cost: 1) },
+        
+        // Chances
+        { TalentType.ChanceCritica,         new TalentConfig(maxLevel: 50,  baseBuff: 1f, cost: 1) },
+        { TalentType.ChanceEmpalamento,     new TalentConfig(maxLevel: 50,  baseBuff: 1f, cost: 1) },
+
+        // Multiplicadores
+        { TalentType.MultCritico,           new TalentConfig(maxLevel: 100,  baseBuff: 2.5f, cost: 1) },
+    };
 
     // ============================
-    // 🔥 Constantes
+    // Construtores
     // ============================
+    public Hero_Talents() { }
 
-    // Pontos de Talento
-    public const int TALENTS_PONTOS_POR_LEVEL = 5;
+    public Hero_Talents(Hero_Talents toCopy)
+    {
+        if (toCopy == null) throw new ArgumentNullException(nameof(toCopy));
 
-    // Bônus de Dano
-    public const float BRUTAMONTES_BASE_BUFF = 2f;
-    public const float PIROMANIACO_BASE_BUFF = 2f;
-    public const float TESLA_BASE_BUFF = 2f;
-    public const float TOQUE_CONGELANTE_BASE_BUFF = 2f;
-    public const float ATIRADOR_ELITE_BASE_BUFF = 2f;
-    public const float PESTILENTO_BASE_BUFF = 2f;
+        PontosTalentos = toCopy.PontosTalentos;
 
-    // Bônus de Status Secundário
-    public const float PASSO_LIGEIRO_BASE_BUFF = 0.25f;
-    public const float PELE_FERRO_BASE_BUFF = 1f;
-    public const float APRESSADO_BASE_BUFF = 0.15f;
+        // copia os levels
+        foreach (var kv in toCopy._levels)
+            _levels[kv.Key] = kv.Value;
+    }
 
-    // ============================
-    // 🎯 Níveis Atuais dos Talentos
-    // ============================
+    public Hero_Talents Clone() => new Hero_Talents(this);
 
-    // Bônus de Dano
-    public float BrutamontesLevel = 0;
-    public float PiromaniacoLevel = 0;
-    public float TeslaLevel = 0;
-    public float ToqueCongelanteLevel = 0;
-    public float AtiradorEliteLevel = 0;
-    public float PestilentoLevel = 0;
+    public void CopyFrom(Hero_Talents other)
+    {
+        PontosTalentos = other.PontosTalentos;
 
-    // Bônus de Status Secundário
-    public float PassoLigeiroLevel = 0;
-    public float PeleFerroLevel = 0;
-    public float ApressadoLevel = 0;
+        _levels.Clear();
+        foreach (var kv in other._levels)
+            _levels[kv.Key] = kv.Value;
+    }
 
     // ============================
-    // ⚙️ Métodos de Controle
+    // ⚙️ API pública (simples)
     // ============================
     public void AddTalentPoints(int value) => PontosTalentos += value;
 
-    private bool TryConsumeTalentPoint()
+    public int GetLevel(TalentType type)
+        => _levels.TryGetValue(type, out var lv) ? lv : 0;
+
+    public static float GetBaseBuff(TalentType type) => GetConfig(type).BaseBuff;
+    public static int GetMaxLevel(TalentType type) => GetConfig(type).MaxLevel;
+    public static int GetCost(TalentType type) => GetConfig(type).Cost;
+
+    // Método pra upar qualquer talento
+    public bool TryUpgrade(TalentType type)
     {
-        if (PontosTalentos <= 0)
+        var cfg = GetConfig(type);
+        int currentLevel = GetLevel(type);
+
+        if (currentLevel >= cfg.MaxLevel)
+            return false;
+
+        if (!TryConsumeTalentPoints(cfg.Cost))
+            return false;
+
+        _levels[type] = currentLevel + 1;
+        return true;
+    }
+
+    // ============================
+    // Internos
+    // ============================
+    private static TalentConfig GetConfig(TalentType type)
+    {
+        if (_config.TryGetValue(type, out var cfg))
+            return cfg;
+
+        Debug.LogError($"Talent sem config: {type}");
+        return default;
+    }
+
+    private bool TryConsumeTalentPoints(int cost)
+    {
+        if (PontosTalentos < cost)
         {
             Debug.LogWarning("Sem pontos de talento disponíveis!");
             return false;
         }
 
-        PontosTalentos--;
+        PontosTalentos -= cost;
         return true;
     }
 
-    // ============================
-    // 🔥 Funções de Incremento
-    // ============================
-
-    // Bônus de Dano
-    public void AddBrutamontesLevel()
+    private readonly struct TalentConfig
     {
-        if (TryConsumeTalentPoint())
-            BrutamontesLevel++;
-    }
+        public readonly int MaxLevel;
+        public readonly float BaseBuff;
+        public readonly int Cost;
 
-    public void AddPiromaniacoLevel()
-    {
-        if (TryConsumeTalentPoint())
-            PiromaniacoLevel++;
-    }
-
-    public void AddTeslaLevel()
-    {
-        if (TryConsumeTalentPoint())
-            TeslaLevel++;
-    }
-
-    public void AddToqueCongelanteLevel()
-    {
-        if (TryConsumeTalentPoint())
-            ToqueCongelanteLevel++;
-    }
-
-    public void AddAtiradorEliteLevel()
-    {
-        if (TryConsumeTalentPoint())
-            AtiradorEliteLevel++;
-    }
-
-    public void AddPestilentoLevel()
-    {
-        if (TryConsumeTalentPoint())
-            PestilentoLevel++;
-    }
-
-    // Bônus de Status Secundário
-    public void AddPassoLigeiroLevel()
-    {
-        if (TryConsumeTalentPoint())
-            PassoLigeiroLevel++;
-    }
-
-    public void AddPeleFerroLevel()
-    {
-        if (TryConsumeTalentPoint())
-            PeleFerroLevel++;
-    }
-
-    public void AddApressadoLevel()
-    {
-        if (TryConsumeTalentPoint())
-            ApressadoLevel++;
+        public TalentConfig(int maxLevel, float baseBuff, int cost)
+        {
+            MaxLevel = maxLevel;
+            BaseBuff = baseBuff;
+            Cost = cost;
+        }
     }
 }
-

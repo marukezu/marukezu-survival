@@ -34,12 +34,12 @@ public class Panel_GamePlay_GameConfiguration : Panel
         IniciaSlidersVolumes();
         SetaVolumes();
 
-        TXT_GameOptions.text = LanguageManager.Get("Game Options");
-        TXT_MusicVolume.text = LanguageManager.Get("Music Volume");
-        TXT_SoundEffectsVolume.text = LanguageManager.Get("Sound Effect Volume");
-        TXT_BtnBack.text = LanguageManager.Get("Back");
-        TXT_ChuvaVolume.text = LanguageManager.Get("Sound Chuva Volume");
-        TXT_TrovaoVolume.text = LanguageManager.Get("Sound Trovão Volume");
+        TXT_GameOptions.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.GameOptions);
+        TXT_MusicVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.MusicVolume);
+        TXT_SoundEffectsVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.SoundEffectVolume);
+        TXT_BtnBack.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Back);
+        TXT_ChuvaVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.SoundChuvaVolume);
+        TXT_TrovaoVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.SoundTrovaoVolume);
     }
 
     private void IniciaSlidersVolumes()

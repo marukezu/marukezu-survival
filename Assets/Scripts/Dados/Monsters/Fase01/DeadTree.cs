@@ -4,12 +4,12 @@ public class DeadTree : Monster
     public DeadTree() : base()
     {
         monsterType = MonsterType.DEADTREE;
-        Name = "DeadTree";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.DeadTree_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("DeadTree Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.DeadTree_Desc);
 
         // Drops
-        
+
     }
 }

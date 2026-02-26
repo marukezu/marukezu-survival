@@ -2,29 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Essa classe representa as Conditions de um Enemy.
+// Cada Enemy possui essa classe como uma variável.
+
 public class EnemyConditions
 {
     private Enemy_GameObject enemy;
     public List<Condition> conditions = new List<Condition>();
 
     // Controle de efeitos visuais/estados
-    public bool isFrozen = false;
-    public bool isEletrify = false;
-    public bool isBurning = false;
-    public bool isPoisoned = false;
+    public bool isBurning => conditions.Exists(c => c.Type == Condition.ConditionType.Burning);
+    public bool isPoisoned => conditions.Exists(c => c.Type == Condition.ConditionType.Poison);
+    public bool isFrozen => conditions.Exists(c => c.Type == Condition.ConditionType.Freeze);
+    public bool isEletrify => conditions.Exists(c => c.Type == Condition.ConditionType.Eletrify);
+
 
     public EnemyConditions(Enemy_GameObject enemy)
     {
         this.enemy = enemy;
     }
 
+    // =======================================
+    // Método chamado no UPDATE() do Enemy.
     public void ApplyConditions()
     {
         // Percorre cópia da lista, pois podemos remover durante o loop
         for (int i = conditions.Count - 1; i >= 0; i--)
         {
             Condition condition = conditions[i];
-            condition.RunCooldown();
+            condition.RunCooldown(); // Reduz a duração e o tickTimer da condition.
 
             switch (condition.Type)
             {
@@ -44,23 +50,15 @@ public class EnemyConditions
                     ApplyEletrify(condition);
                     break;
             }
-
-            if (condition.IsExpired)
-            {
-                OnConditionEnd(condition);
-                conditions.RemoveAt(i);
-            }
         }
     }
 
     // ==========================================================
     private void ApplyPoison(Condition condition)
     {
-        isPoisoned = true;
-
-        if (condition.ShouldTick(Condition.POISON_BASE_TICKRATE))
+        if (condition.ShouldTick())
         {
-            enemy.ReceberDano(condition.GetDamagePerTick(Condition.POISON_BASE_TICKRATE), Color.green);
+            Combat.DoConditionCombat(condition, enemy);
         }
     }
     private void ApplyFreeze(Condition condition)
@@ -68,7 +66,6 @@ public class EnemyConditions
         // Ativar congelamento apenas uma vez
         if (!isFrozen)
         {
-            isFrozen = true;
             enemy._enemySpriteRenderer.material.color = Color.cyan;
             enemy.monster.Speed *= 0.8f;
 
@@ -78,40 +75,17 @@ public class EnemyConditions
 
     private void ApplyBurning(Condition condition)
     {
-        isBurning = true;
-
-        if (condition.ShouldTick(Condition.BURNING_BASE_TICKRATE))
+        if (condition.ShouldTick())
         {
-            enemy.ReceberDano(condition.GetDamagePerTick(Condition.BURNING_BASE_TICKRATE), new Color(1f, 0.5f, 0f));
+            Combat.DoConditionCombat(condition, enemy);
         }
     }
 
     private void ApplyEletrify(Condition condition)
     {
-        isEletrify = true;
-
-        if (condition.ShouldTick(Condition.ELETRIFY_BASE_TICKRATE))
+        if (condition.ShouldTick())
         {
             PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Eletrify, enemy.transform);
-        }
-    }
-
-    // ==========================================================
-    private void OnConditionEnd(Condition condition)
-    {
-        switch (condition.Type)
-        {
-            case Condition.ConditionType.Freeze:
-                isFrozen = false;
-                enemy._enemySpriteRenderer.material.color = enemy.animations._corOriginal;
-                enemy.monster.Speed = enemy.originalSpeed;
-                break;
-            case Condition.ConditionType.Burning:
-                isBurning = false;
-                break;
-            case Condition.ConditionType.Eletrify:
-                isEletrify = false;
-                break;
         }
     }
 
@@ -151,7 +125,6 @@ public class EnemyConditions
         {
             if (conditions[i].Type == conditionType)
             {
-                OnConditionEnd(conditions[i]);
                 conditions.RemoveAt(i);
             }
         }

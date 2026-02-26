@@ -30,7 +30,7 @@ public class Panel_MainMenu_Shop : Panel
     public override void AtualizarPainel()
     {
         // Componentes do painel.
-        TXT_Shop.text = LanguageManager.Get("Shop");
+        TXT_Shop.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Shop);
 
         // Currency do jogador.
         TXT_PlayerMoney.text = PlayerConfig.playerMoney.ToString();

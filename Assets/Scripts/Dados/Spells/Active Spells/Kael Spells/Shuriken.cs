@@ -10,8 +10,8 @@ public class Shuriken : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Shuriken;
-        Name = LanguageManager.Get("Shuriken Name");
-        Descricao = LanguageManager.Get("Shuriken Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Shuriken_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Shuriken_Desc);
         BaseDmg = 45;
         DamagePercentPerLevel = 5;
         BaseCooldown = 3f;
@@ -39,20 +39,5 @@ public class Shuriken : Spell
             spellPrefab.GetComponent<Projectile>().InitializeProjectile(this);
         }
 
-    }
-
-    public override void ResetSpell()
-    {
-        base.ResetSpell();
-        /*
-        // Reinicia o dicionario na classe Projectile_Shuriken
-        if (Projectile_Shuriken.shurikenOrbiters.ContainsKey(Caster))
-        {
-            foreach (var sh in Projectile_Shuriken.shurikenOrbiters[Caster])
-                GameObject.Destroy(sh.gameObject); // destrói fisicamente os projéteis
-
-            Projectile_Shuriken.shurikenOrbiters[Caster].Clear(); // limpa a lista do caster
-        }
-        */
     }
 }

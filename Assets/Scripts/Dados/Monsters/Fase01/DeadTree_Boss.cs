@@ -4,12 +4,12 @@ public class DeadTree_Boss : Monster
     public DeadTree_Boss() : base()
     {
         monsterType = MonsterType.DEADTREE_BOSS;
-        Name = "DeadTreeBoss";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.DeadTree_Boss_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("DeadTree Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.DeadTree_Boss_Desc);
 
         // Drops
-        
+
     }
 }

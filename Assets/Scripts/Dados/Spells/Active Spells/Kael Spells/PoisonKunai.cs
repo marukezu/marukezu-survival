@@ -9,8 +9,8 @@ public class PoisonKunai : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_PoisonKunai;
-        Name = LanguageManager.Get("Poison Kunai Name");
-        Descricao = LanguageManager.Get("Poison Kunai Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.PoisonKunai_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.PoisonKunai_Desc);
         BaseDmg = 65;
         DamagePercentPerLevel = 5;
         BaseCooldown = 2.5f;

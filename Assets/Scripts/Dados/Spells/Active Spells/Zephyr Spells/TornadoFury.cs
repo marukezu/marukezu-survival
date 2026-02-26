@@ -9,8 +9,8 @@ public class TornadoFury : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_TornadoFury;
-        Name = LanguageManager.Get("Tornado Fury Name");
-        Descricao = LanguageManager.Get("Tornado Fury Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.TornadoFury_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.TornadoFury_Desc);
         BaseDmg = 70f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 4f;

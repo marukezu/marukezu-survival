@@ -9,8 +9,8 @@ public class Icicle : Spell
         TypeTarget = TargetType.SINGLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Icicle;
-        Name = LanguageManager.Get("Icicle Name");
-        Descricao = LanguageManager.Get("Icicle Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Icicle_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Icicle_Desc);
         BaseDmg = 90;
         DamagePercentPerLevel = 2;
         BaseCooldown = 3f;

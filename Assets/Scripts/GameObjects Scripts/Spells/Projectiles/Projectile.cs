@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -6,6 +7,7 @@ public class Projectile : MonoBehaviour
     [Header("====== Configuração Básica do Projétil ======")]
     public float speed = 5f;
     public float duracao = 5f;
+    public float delayMovimento = 0f;
 
     [Header("====== Comportamento ======")]
     public bool atravessaAlvo;
@@ -20,6 +22,8 @@ public class Projectile : MonoBehaviour
     // Se verdadeiro, ignora qualquer alvo e apenas segue o ângulo inicial
     protected bool usaAnguloFixo;
 
+    protected bool temDelayMovimento = false;
+
     protected virtual void Start()
     {
         // Só aponta para o target se não estiver usando ângulo fixo
@@ -28,6 +32,11 @@ public class Projectile : MonoBehaviour
 
         if (duracao > 0)
             Destroy(gameObject, duracao);
+
+        if (delayMovimento > 0)
+        {
+            StartCoroutine(RealizarDelayMovimento());
+        }
     }
 
     protected virtual void Update()
@@ -80,6 +89,21 @@ public class Projectile : MonoBehaviour
     // =========================================================
     // Movimento
     // =========================================================
+    private IEnumerator RealizarDelayMovimento()
+    {
+        temDelayMovimento = true;
+
+        yield return new WaitForSeconds(delayMovimento);
+
+        target = SpellsManager.Instance.GetRandomTarget(null);
+
+        if (target == null)
+            Destroy(gameObject);
+
+        ApontarAoTarget();
+        temDelayMovimento = false;
+    }
+
     protected virtual void ApontarAoTarget()
     {
         if (target == null)
@@ -99,6 +123,10 @@ public class Projectile : MonoBehaviour
 
     protected virtual void MoverAoTarget()
     {
+        // Caso tiver Delay para inicializar movimento.
+        if (temDelayMovimento)
+            return;
+
         // Caso o projétil use ângulo fixo, apenas segue em frente
         if (usaAnguloFixo)
         {

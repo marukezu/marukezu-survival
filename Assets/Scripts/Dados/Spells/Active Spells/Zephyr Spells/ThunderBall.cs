@@ -11,8 +11,8 @@ public class ThunderBall : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_ThunderBall;
-        Name = LanguageManager.Get("Thunder Ball Name");
-        Descricao = LanguageManager.Get("Thunder Ball Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ThunderBall_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ThunderBall_Desc);
         BaseDmg = 30f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 3f;

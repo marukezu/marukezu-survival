@@ -4,11 +4,12 @@ public class Djinn : Monster
     public Djinn() : base()
     {
         monsterType = MonsterType.DJINN;
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Djinn_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Djinn Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Djinn_Desc);
 
         // Drops
-        
+
     }
 }

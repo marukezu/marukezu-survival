@@ -1,37 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static SpawnController;
 
 public class Event_DoubleSpawnRate : Event
 {
-    private List<Enemy_GameObject> siegeEnemys = new List<Enemy_GameObject>();
-
-    public Event_DoubleSpawnRate() : base(EventType.DOUBLE_SPAWNRATE)
+    public Event_DoubleSpawnRate() : base(EventCategory.Negative, weight: 2f)
     {
-        Duration = Random.Range(45, 60); // Dura de 45 a 60 segundos.
+        Duration = Random.Range(45f, 60f);
     }
 
-    public override void DoEvent()
+    protected override void OnTick(float deltaTime)
     {
-        // Mostra painel de anúncio
-        EventInfo eventInfo = new EventInfo(true, LanguageManager.Get("Event DoubleSpawnRate Announcement"));
+        base.OnTick(deltaTime);
+
+        Duration -= deltaTime;
+    }
+
+    protected override void OnStart()
+    {
+        var eventInfo = new EventInfo(true, LanguageManager.Get(LanguageTexts_Events.EventWords.EventDoubleSpawnRateAnnouncement));
         PanelManager.Instance.InstanciarERetornarPainel(Panel.PanelType.EVENT_INFO, eventInfo);
 
-        // Informa o LevelController que dobrou o spawn rate
         LevelController.Instance.isDoubleSpawnRate = true;
-        
     }
 
-    protected override void FinishEvent()
+    protected override void OnFinish()
     {
-        base.FinishEvent();
-
-        EventInfo eventInfo = new EventInfo(true, LanguageManager.Get("Event DoubleSpawnRate Finished"));
+        var eventInfo = new EventInfo(true, LanguageManager.Get(LanguageTexts_Events.EventWords.EventDoubleSpawnRateFinished));
         PanelManager.Instance.InstanciarERetornarPainel(Panel.PanelType.EVENT_INFO, eventInfo);
 
-        // Informa o LevelController que acabou o double spawn rate
         LevelController.Instance.isDoubleSpawnRate = false;
     }
 }

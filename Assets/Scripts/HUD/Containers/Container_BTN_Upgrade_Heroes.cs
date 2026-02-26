@@ -72,32 +72,32 @@ public class Container_BTN_Upgrade_Heroes : Panel
 
         // Level
         IMG_HeroLevel_Icon.sprite = SpritesManager.Instance.heroesSprites.Status_Level;
-        TXT_HeroLevel.text = hero.heroLevel.ToString();
+        TXT_HeroLevel.text = hero.cards.heroLevel.ToString();
 
         // Hero Cards
         IMG_HeroCards_Icon.sprite = hero.heroPortrait;
         TXT_HeroCardsAtual.text = PlayerConfig.GetCardsQuantity(hero.typeHero).ToString();
-        TXT_HeroCardsNecessarios.text = hero.cardsToNextLevel.ToString();
+        TXT_HeroCardsNecessarios.text = hero.cards.cardsToNextLevel.ToString();
 
         // Max Health
         IMG_HeroMaxHealth_Icon.sprite = SpritesManager.Instance.heroesSprites.Status_MaxHealth;
-        TXT_HeroMaxHealth.text = hero.heroBaseMaxHealth.ToString("F0");
-        TXT_HeroMaxHealthBonus.text = "+ " + hero.GetHealthPerLevel().ToString();
+        TXT_HeroMaxHealth.text = hero.baseStatus.heroBaseMaxHealth.ToString("F0");
+        TXT_HeroMaxHealthBonus.text = "+ " + hero.cards.GetHealthPerLevel().ToString();
 
         // Mov Speed
         IMG_HeroMovSpeed_Icon.sprite = SpritesManager.Instance.heroesSprites.Status_MovSpeed;
-        TXT_HeroMovSpeed.text = hero.heroBaseMovSpeed.ToString("F3");
-        TXT_HeroMovSpeedBonus.text = "+ " + hero.GetSpeedPerLevel().ToString();
+        TXT_HeroMovSpeed.text = hero.baseStatus.heroBaseMovSpeed.ToString("F3");
+        TXT_HeroMovSpeedBonus.text = "+ " + hero.cards.GetSpeedPerLevel().ToString();
 
         // Damage
         IMG_HeroDamage_Icon.sprite = SpritesManager.Instance.heroesSprites.Status_Damage;
-        TXT_HeroDamage.text = hero.heroBaseDamagePercent.ToString("F1") + "%";
-        TXT_HeroDamageBonus.text = "+ " + hero.GetDamagePerLevel().ToString() + "%";
+        TXT_HeroDamage.text = hero.baseStatus.heroBaseDamagePercent.ToString("F1") + "%";
+        TXT_HeroDamageBonus.text = "+ " + hero.cards.GetDamagePerLevel().ToString() + "%";
 
         // Cooldown
         IMG_HeroCooldown_Icon.sprite = SpritesManager.Instance.heroesSprites.Status_Cooldown;
-        TXT_HeroCooldown.text = hero.heroBaseCooldownPercent.ToString("F2") + "%";
-        TXT_HeroCooldownBonus.text = "+ " + hero.GetCooldownPerLevel().ToString() + "%";
+        TXT_HeroCooldown.text = hero.baseStatus.heroBaseCooldownPercent.ToString("F2") + "%";
+        TXT_HeroCooldownBonus.text = "+ " + hero.cards.GetCooldownPerLevel().ToString() + "%";
     }
 
     private void BTN_ThisButton_Action()
@@ -105,9 +105,9 @@ public class Container_BTN_Upgrade_Heroes : Panel
         if (!canClick)
             return;
 
-        if (PlayerConfig.GetCardsQuantity(hero.typeHero) >= hero.cardsToNextLevel)
+        if (PlayerConfig.GetCardsQuantity(hero.typeHero) >= hero.cards.cardsToNextLevel)
         {
-            hero.UpToNextLevel();
+            hero.cards.UpToNextLevel();
             AtualizarDados();
             StartCoroutine(FlashColorCoroutine(Color.green));
             GetComponent<Animator>().SetTrigger("RunPositive");

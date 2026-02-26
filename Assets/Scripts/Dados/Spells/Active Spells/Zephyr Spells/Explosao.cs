@@ -9,8 +9,8 @@ public class Explosao : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Explosion;
-        Name = LanguageManager.Get("Explosao Name");
-        Descricao = LanguageManager.Get("Explosao Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Explosion_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Explosion_Desc);
         BaseDmg = 80f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 2f;

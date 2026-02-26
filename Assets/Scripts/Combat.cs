@@ -1,84 +1,149 @@
-using UnityEngine;
+using System;
+
+public sealed class CombatResult
+{
+    public Spell.Elemento element;
+    public float finalDamage;
+
+    // Flags
+    public bool isCritical;
+
+    public CombatResult(Spell.Elemento element, float finalDamage, bool isCritical)
+    {
+        this.element = element;
+        this.finalDamage = finalDamage;
+        this.isCritical = isCritical;
+    }
+}
 
 public static class Combat
 {
+    // Para calculos de chances.
+    private static readonly Random _rng = new Random();
+
     public static void DoCombat(Spell spell, Enemy_GameObject target)
     {
-        Color spellColor;
-        GameObject damageEffect;
+        float finalDamage = spell.GetSpellDamage();
+        bool isCritical = Calculate_Critical();
 
-        switch (spell.SpellElement)
-        {
-            case Spell.Elemento.PHYSICAL:
-                spellColor = Color.red;
-                damageEffect = PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Physical, target.transform);
-                break;
+        // Se for crítico, multiplica o dano.
+        if (isCritical)
+            finalDamage *= (HeroImage.GetHeroCriticalMultiplier() / 100);
 
-            case Spell.Elemento.FIRE:
-                spellColor = new Color(1f, 0.5f, 0f); // Laranja
-                damageEffect = PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Fire, target.transform);
-                break;
-
-            case Spell.Elemento.ICE:
-                spellColor = Color.cyan;
-                damageEffect = PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Ice, target.transform);
-                break;
-
-            case Spell.Elemento.THUNDER:
-                spellColor = Color.blue;
-                damageEffect = PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Thunder, target.transform);
-                break;
-
-            case Spell.Elemento.POISON:
-                spellColor = Color.green;
-                damageEffect = PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Poison, target.transform);
-                break;
-
-            default:
-                spellColor = Color.red;
-                damageEffect = PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Physical, target.transform);
-                break;
-        }
-
-        float danoFinal = spell.GetSpellDamage();
-
-        // Verifica Eletrify
+        // Consome Eletrify
         if (target.conditions.isEletrify && spell.consumeEletrify)
         {
-            danoFinal *= 2.5f;
+            finalDamage *= 2.5f;
             target.conditions.RemoveCondition(Condition.ConditionType.Eletrify);
             PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.ConsumeEletrify, target.transform);
         }
 
+        // Aplica condições da Spell
+        Apply_SpellConditions(spell, target);
+
+        // Preenche o CombatResult
+        CombatResult result = new CombatResult(
+            element: spell.SpellElement,
+            finalDamage: finalDamage,
+            isCritical: isCritical
+            );
+
+        // Informa o dano.
+        target.ReceberDano(result);
+    }
+
+    // ============================================================================
+    // ============================= CONDITION COMBAT =============================
+    // ============================================================================
+    public static void DoConditionCombat(Condition condition, Enemy_GameObject target)
+    {
+        CombatResult result = new CombatResult(
+            element: condition.Element,
+            finalDamage: condition.GetDamagePerTick(),
+            isCritical: false
+            );
+
+        target.ReceberDano(result);
+    }
+
+    private static void Apply_SpellConditions(Spell spell, Enemy_GameObject target)
+    {
         // Aplicação de status poison
         if (spell.statusPoison)
         {
-            danoFinal /= 2;
-            target.conditions.AddCondition(new Condition(Condition.ConditionType.Poison, danoFinal, 2.5f, true));
+            target.conditions.AddCondition(
+                new Condition(
+                    type: Condition.ConditionType.Poison,
+                    damage: spell.GetSpellDamage() / 2,
+                    duration: 2.5f,
+                    isStackable: true
+                )
+            );
         }
 
         // Aplicação de status burning
         if (spell.statusBurn)
         {
-            danoFinal /= 2;
-            target.conditions.AddCondition(new Condition(Condition.ConditionType.Burning, danoFinal, 1.5f, true));
+            target.conditions.AddCondition(
+                new Condition(
+                    type: Condition.ConditionType.Burning,
+                    damage: spell.GetSpellDamage() / 2,
+                    duration: 1.5f,
+                    isStackable: true)
+                );
         }
 
         // Aplicação de status freeze
         if (spell.statusFreeze)
-            target.conditions.AddCondition(new Condition(Condition.ConditionType.Freeze, 0, 1.5f, false));
+        {
+            target.conditions.AddCondition(
+                new Condition(
+                    type: Condition.ConditionType.Freeze,
+                    damage: 0,
+                    duration: 1.5f,
+                    isStackable: false)
+                );
+        }
 
         // Aplicação de status eletrify
         if (spell.statusEletrify)
-            target.conditions.AddCondition(new Condition(Condition.ConditionType.Eletrify, 0, 2.5f, false));
+        {
+            target.conditions.AddCondition(
+                new Condition(
+                    type: Condition.ConditionType.Eletrify,
+                    damage: 0,
+                    duration: 2.5f,
+                    isStackable: false)
+                );
+        }
+    }
 
-        // Recebe o dano.
-        target.ReceberDano(danoFinal, spellColor);
-    }   
-
+    // ============================================================================
+    // ============================== POTION COMBAT ===============================
+    // ============================================================================
     public static void DoPotionCombat(Potion potion, Enemy_GameObject target)
     {
+        CombatResult result = new CombatResult(
+            element: Spell.Elemento.FIRE,
+            finalDamage: potion.effectPotency,
+            isCritical: false
+            );
+
         // Recebe o dano.
-        target.ReceberDano(potion.effectPotency, new Color(1f, 0.5f, 0f));
+        target.ReceberDano(result);
+    }
+
+    // ============================================================================
+    // =========================== CALCULOS ADICIONAIS ============================
+    // ============================================================================
+    private static bool Calculate_Critical()
+    {
+        float chanceCritica = HeroImage.GetHeroCriticalChance(); // ex: 25 = 25%
+
+        double sorteio = _rng.NextDouble() * 100.0;
+        // NextDouble() gera 0.0 até 0.999...
+        // multiplicamos por 100 para virar 0–99.999...
+
+        return sorteio < chanceCritica;
     }
 }

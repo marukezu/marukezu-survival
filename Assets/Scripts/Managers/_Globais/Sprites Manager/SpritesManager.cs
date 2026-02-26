@@ -11,6 +11,7 @@ public class SpritesManager : MonoBehaviour
     public SpritesManager_Condition conditionSprites;
     public SpritesManager_Upgrades upgradesSprites;
     public SpritesManager_Potions potionsSprites;
+    public SpritesManager_Talents talentsSprites;
 
     [Header("====== Upgrade - Levels ======")]
     public Sprite spriteUpgradeLevel0;

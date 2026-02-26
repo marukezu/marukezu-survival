@@ -4,12 +4,12 @@ public class Wolf_Boss : Monster
     public Wolf_Boss() : base()
     {
         monsterType = MonsterType.WOLF_BOSS;
-        Name = "WolfBoss";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Wolf_Boss_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Wolf Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Wolf_Boss_Desc);
 
         // Drops
-        
+
     }
 }

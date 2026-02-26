@@ -9,8 +9,8 @@ public class IgnisArrow : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_IgnisArrow;
-        Name = LanguageManager.Get("Ignis Arrow Name");
-        Descricao = LanguageManager.Get("Ignis Arrow Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.IgnisArrow_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.IgnisArrow_Desc);
         BaseDmg = 45f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 3f;

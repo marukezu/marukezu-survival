@@ -9,8 +9,8 @@ public class Thunder : Spell
         TypeTarget = TargetType.SINGLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Thunder;
-        Name = LanguageManager.Get("Thunder Name");
-        Descricao = LanguageManager.Get("Thunder Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Thunder_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Thunder_Desc);
         BaseDmg = 35f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 3f;

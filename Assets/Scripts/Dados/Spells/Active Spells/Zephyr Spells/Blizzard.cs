@@ -12,8 +12,8 @@ public class Blizzard : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Blizzard;
-        Name = LanguageManager.Get("Blizzard Name");
-        Descricao = LanguageManager.Get("Blizzard Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Blizzard_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Blizzard_Desc);
         BaseDmg = 35f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 2.25f;

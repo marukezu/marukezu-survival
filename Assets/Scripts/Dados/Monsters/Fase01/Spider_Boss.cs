@@ -4,12 +4,12 @@ public class Spider_Boss : Monster
     public Spider_Boss() : base()
     {
         monsterType = MonsterType.SPIDER_BOSS;
-        Name = "SpiderBoss";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Spider_Boss_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Spider Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Spider_Boss_Desc);
 
         // Drops
-        
+
     }
 }

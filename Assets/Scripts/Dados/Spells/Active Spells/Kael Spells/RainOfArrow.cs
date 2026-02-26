@@ -9,8 +9,8 @@ public class RainOfArrow : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_RainOfArrow;
-        Name = LanguageManager.Get("Rain Of Arrow Name");
-        Descricao = LanguageManager.Get("Rain Of Arrow Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.RainOfArrows_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.RainOfArrows_Desc);
         BaseDmg = 90;
         DamagePercentPerLevel = 5;
         BaseCooldown = 4f;

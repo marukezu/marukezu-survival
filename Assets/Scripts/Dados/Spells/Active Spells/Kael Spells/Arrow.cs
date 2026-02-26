@@ -9,8 +9,8 @@ public class Arrow : Spell
         TypeTarget = TargetType.SINGLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Arrow;
-        Name = LanguageManager.Get("Arrow Name");
-        Descricao = LanguageManager.Get("Arrow Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Arrow_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Arrow_Desc);
         BaseDmg = 90;
         DamagePercentPerLevel = 5;
         BaseCooldown = 4f;

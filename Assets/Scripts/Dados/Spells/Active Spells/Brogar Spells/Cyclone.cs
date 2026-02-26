@@ -4,11 +4,11 @@ public class Cyclone : Spell
     {
         TypeSpell = SpellType.ACTIVE_CYCLONE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Cyclone;
-        Name = LanguageManager.Get("Cyclone Name");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Cyclone_Name);
         BaseDmg = 11f;
         BaseCooldown = 7f;
         PoderImpulsao = 0.25f;
         LevelMax = 7;
-        Descricao = LanguageManager.Get("Cyclone Description");
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Cyclone_Desc);
     }
 }

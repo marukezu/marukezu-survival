@@ -9,7 +9,7 @@ public class Potion_Restauration : Potion
     public Potion_Restauration()
     {
         typePotion = PotionType.Restoration;
-        potionName = LanguageManager.Get("Potion Restoration");
+        potionName = LanguageManager.Get(LanguageTexts_Potions.PotionWords.PotionRestoration_Name);
         potionIcon = SpritesManager.Instance.potionsSprites.potion_restauration_icon;
         potionPrice = 750;
         maxQuantity = 2;

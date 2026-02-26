@@ -12,8 +12,8 @@ public class IceTotem : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_IceTotem;
-        Name = LanguageManager.Get("Ice Totem Name");
-        Descricao = LanguageManager.Get("Ice Totem Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.IceTotem_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.IceTotem_Desc);
         BaseDmg = 55f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 4f;

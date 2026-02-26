@@ -6,6 +6,8 @@ public class ContainerManager : MonoBehaviour
 {
     public static ContainerManager Instance;
 
+    public GameObject defaultRoot;
+
     public enum ContainerType
     {
         // QUALQUER PAINEL
@@ -20,6 +22,9 @@ public class ContainerManager : MonoBehaviour
         // MAIN MENU - SHOP
         MAINMENU_SHOP_BTNPOTION,
         MAINMENU_SHOP_BTNRELIC,
+
+        // TOOLTIPS
+        TOOLTIP_SPELLS,
     }
 
     [Header("====== Containers ======")]
@@ -28,6 +33,7 @@ public class ContainerManager : MonoBehaviour
     [SerializeField] private GameObject Container_MainMenu_Upgrades_BTNHero;
     [SerializeField] private GameObject Container_MainMenu_Shop_BTNPotion;
     [SerializeField] private GameObject Container_MainMenu_Shop_BTNRelic;
+    [SerializeField] private GameObject Container_Tooltip_SpellInfo;
 
     // Dicion�rio com todos os containers.
     private Dictionary<ContainerType, GameObject> containerDictionary;
@@ -43,6 +49,11 @@ public class ContainerManager : MonoBehaviour
         InitializeDictionary();
     }
 
+    public void SetDefaultRoot(GameObject root)
+    {
+        defaultRoot = root;
+    }
+
     private void InitializeDictionary()
     {
         containerDictionary = new Dictionary<ContainerType, GameObject>
@@ -55,6 +66,9 @@ public class ContainerManager : MonoBehaviour
              { ContainerType.MAINMENU_UPGRADES_BTNHERO, Container_MainMenu_Upgrades_BTNHero },
              { ContainerType.MAINMENU_SHOP_BTNPOTION, Container_MainMenu_Shop_BTNPotion },
              { ContainerType.MAINMENU_SHOP_BTNRELIC, Container_MainMenu_Shop_BTNRelic },
+
+             // Tooltips             
+             { ContainerType.TOOLTIP_SPELLS, Container_Tooltip_SpellInfo },
         };
     }
 
@@ -74,7 +88,7 @@ public class ContainerManager : MonoBehaviour
         return newContainer;
     }
     public GameObject InstantiateContainerInPositionAndReturnContainer(
-    ContainerType containerType, Vector3 position)
+        ContainerType containerType, Vector3 position)
     {
         GameObject newContainer = null;
 

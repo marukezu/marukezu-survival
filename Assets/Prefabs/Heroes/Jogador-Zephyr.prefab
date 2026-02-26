@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5718182134386819935}
   - component: {fileID: 6076402649283669268}
   - component: {fileID: 8720562448828386131}
-  - component: {fileID: 3881231447222935506}
   - component: {fileID: 5933212464723334151}
+  - component: {fileID: 3881231447222935506}
   - component: {fileID: 1398706600880742659}
   - component: {fileID: 5119250733832134926}
   - component: {fileID: 4047295376201890316}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1248123697
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: 55c70606cb5fa274696a4569f09a4140, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -156,27 +156,6 @@ CircleCollider2D:
   m_Offset: {x: -0.004845619, y: -0.19540954}
   serializedVersion: 2
   m_Radius: 0.31
---- !u!114 &3881231447222935506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852584537491868429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511fa31dfa9a242479d172cd8bae2f0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDead: 0
-  orbAttractor: {fileID: 4199050581081559785}
-  playerCollider: {fileID: 8720562448828386131}
-  heroRigidBody2D: {fileID: 0}
-  heroSpriteRenderer: {fileID: 0}
-  heroAnimator: {fileID: 0}
-  heroOriginalColor: {r: 0, g: 0, b: 0, a: 0}
-  heroRelics: {fileID: 0}
-  heroInputs: {fileID: 0}
 --- !u!95 &5933212464723334151
 Animator:
   serializedVersion: 5
@@ -198,6 +177,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3881231447222935506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852584537491868429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511fa31dfa9a242479d172cd8bae2f0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  orbAttractor: {fileID: 4199050581081559785}
+  playerCollider: {fileID: 8720562448828386131}
+  heroRigidBody2D: {fileID: 0}
+  heroSpriteRenderer: {fileID: 0}
+  heroAnimator: {fileID: 0}
+  heroOriginalColor: {r: 0, g: 0, b: 0, a: 0}
+  heroRelics: {fileID: 0}
+  heroInputs: {fileID: 0}
 --- !u!114 &1398706600880742659
 MonoBehaviour:
   m_ObjectHideFlags: 0

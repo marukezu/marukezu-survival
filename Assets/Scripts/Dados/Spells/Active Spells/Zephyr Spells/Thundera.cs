@@ -11,8 +11,8 @@ public class Thundera : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Thundera;
-        Name = LanguageManager.Get("Thundera Name");
-        Descricao = LanguageManager.Get("Thundera Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Thundera_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Thundera_Desc);
         BaseDmg = 25f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 1.75f;

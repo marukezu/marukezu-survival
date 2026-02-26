@@ -76,17 +76,38 @@ public static class SpellsList
 
     public static List<Spell> KaelSpells = new List<Spell>()
     {
-        // Physical Closed Range
+        // Physical
         Shuriken, PierceDagger, TheEightKunais, PoisonKunai, Agility,        
 
-        // Physical Distance Range
-        Arrow, MultipleShot, RainOfArrow, ExplosiveArrow,
+        // Distance
+        Arrow, MultipleShot, RainOfArrow, ExplosiveArrow, ScatterArrow,
     };
 
     public static List<Spell> BrogharSpells = new List<Spell>()
     {
 
     };
+
+    public static void PrepareHeroSpell()
+    {
+        foreach (Spell spell in AllSpells)
+        {
+            if (spell == HeroImage.active1)
+            {
+                spell.SpellLevel = 1;
+            }
+            else
+            {
+                spell.SpellLevel = 0;
+            }
+        }
+    }
+
+    public static void ResetSpells()
+    {
+        foreach (Spell spell in AllSpells)
+            spell.SpellLevel = 0;
+    }
 
     public static void UnlockSpellBestiary(Spell.SpellType spell)
     {

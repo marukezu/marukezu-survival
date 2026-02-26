@@ -9,8 +9,8 @@ public class MultipleShot : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_MultipleShot;
-        Name = LanguageManager.Get("Multiple Shot Name");
-        Descricao = LanguageManager.Get("Multiple Shot Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.MultipleShot_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.MultipleShot_Desc);
         BaseDmg = 90;
         DamagePercentPerLevel = 5;
         BaseCooldown = 3f;

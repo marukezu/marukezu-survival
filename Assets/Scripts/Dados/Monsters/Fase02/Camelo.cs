@@ -4,11 +4,12 @@ public class Camelo : Monster
     public Camelo() : base()
     {
         monsterType = MonsterType.CAMELO;
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Camelo_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Camelo Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Camelo_Desc);
 
         // Drops
-        
+
     }
 }

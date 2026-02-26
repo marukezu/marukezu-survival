@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Panel_GamePlay_ChooseNewSpell : Panel
 {
@@ -17,7 +14,7 @@ public class Panel_GamePlay_ChooseNewSpell : Panel
 
     private void Awake()
     {
-        TXT_Choose_A_Spell.text = LanguageManager.Get("Choose A Spell");
+        TXT_Choose_A_Spell.text = LanguageManager.Get(LanguageTexts_Panel_GamePlay.PanelGamePlayWords.ChooseASpell);
     }
 
     public override void AbrirPainel(object param1 = null, object param2 = null, object param3 = null)

@@ -4,12 +4,12 @@ public class Skeleton_Boss : Monster
     public Skeleton_Boss() : base()
     {
         monsterType = MonsterType.SKELETON_BOSS;
-        Name = "SkeletonBoss";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Skeleton_Boss_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Skeleton Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Skeleton_Boss_Desc);
 
         // Drops
-        
+
     }
 }

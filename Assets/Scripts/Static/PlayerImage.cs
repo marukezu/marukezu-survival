@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 // Essa classe representa os itens, utilizáveis, conquistas do player NA PARTIDA ATUAL.
 // Classe usada DURANTE a gameplay.
 
@@ -14,7 +10,17 @@ public static class PlayerImage
     // Dados de Inimigos
     public static int inimigosDerrotados { get; set; } = 0;
 
-    public static void ResetPlayerImage()
+    public static void PreparePlayerImage() // Método que prepara a classe para uma nova run.
+    {
+        // Dados Monetários
+        moneyFeito = 0;
+        bausRecebidos = 0;
+
+        // Dados de Inimigos
+        inimigosDerrotados = 0;
+    }
+
+    public static void ResetPlayerImage() // Método que finaliza a classe após uma run.
     {
         // Dados Monetários
         moneyFeito = 0;

@@ -9,8 +9,8 @@ public class FireBall : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Fireball;
-        Name = LanguageManager.Get("Fireball Name");
-        Descricao = LanguageManager.Get("Fireball Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Fireball_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Fireball_Desc);
         BaseDmg = 75;
         DamagePercentPerLevel = 2;
         BaseCooldown = 4f;

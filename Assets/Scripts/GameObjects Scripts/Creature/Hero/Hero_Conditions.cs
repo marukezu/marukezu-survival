@@ -8,11 +8,12 @@ public class Hero_Conditions
     public List<Condition> conditions = new List<Condition>();
 
     // Controle de efeitos visuais/estados
-    public bool isHasted = false;
-    public bool isFrozen = false;
-    public bool isEletrify = false;
-    public bool isBurning = false;
-    public bool isProtected = false;
+    public bool isBurning => conditions.Exists(c => c.Type == Condition.ConditionType.Burning);
+    public bool isPoisoned => conditions.Exists(c => c.Type == Condition.ConditionType.Poison);
+    public bool isFrozen => conditions.Exists(c => c.Type == Condition.ConditionType.Freeze);
+    public bool isEletrify => conditions.Exists(c => c.Type == Condition.ConditionType.Eletrify);
+    public bool isHasted => conditions.Exists(c => c.Type == Condition.ConditionType.Haste);
+    public bool isProtected => conditions.Exists(c => c.Type == Condition.ConditionType.Protection);
 
     public Hero_Conditions(Hero_GameObject hero)
     {
@@ -48,63 +49,32 @@ public class Hero_Conditions
                     ApplyProtection();
                     break;
             }
-
-            if (condition.IsExpired)
-            {
-                OnConditionEnd(condition);
-                conditions.RemoveAt(i);
-            }
         }
     }
 
     // ==========================================================
     private void ApplyHaste(Condition condition)
     {
-        isHasted = true;
-
-        if (condition.ShouldTick(Condition.HASTE_BASE_TICKRATE))
+        if (condition.ShouldTick())
         {
             PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Haste, hero.transform);
         }
     }
     private void ApplyFreeze()
     {
-        isFrozen = true;
+
     }
     private void ApplyBurning()
     {
-        isBurning = true;
+
     }
     private void ApplyEletrify()
     {
-        isEletrify = true;
+
     }
     private void ApplyProtection()
     {
-        isProtected = true;
-    }
 
-    // ==========================================================
-    private void OnConditionEnd(Condition condition)
-    {
-        switch (condition.Type)
-        {
-            case Condition.ConditionType.Haste:
-                isHasted = false;
-                break;
-            case Condition.ConditionType.Freeze:
-                isFrozen = false;
-                break;
-            case Condition.ConditionType.Burning:
-                isBurning = false;
-                break;
-            case Condition.ConditionType.Eletrify:
-                isEletrify = false;
-                break;
-            case Condition.ConditionType.Protection:
-                isProtected = false;
-                break;
-        }
     }
 
     // ==========================================================

@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EnemyAnimations
 {
@@ -26,13 +24,17 @@ public class EnemyAnimations
     {
         if (enemy.conditions.isFrozen)
             enemy._enemySpriteRenderer.material.color = Color.cyan;
+
         else if (enemy.conditions.isBurning)
             enemy._enemySpriteRenderer.material.color = new Color(1f, 0.5f, 0f);
+
         else if(enemy.conditions.isPoisoned)
             enemy._enemySpriteRenderer.material.color = Color.green;
+
         else
             enemy._enemySpriteRenderer.material.color = _corOriginal;
     }
+
     public IEnumerator AtivaAnimacaoDano(Color color)
     {
         enemy._enemySpriteRenderer.material.color = color;
@@ -42,12 +44,11 @@ public class EnemyAnimations
         enemy._enemySpriteRenderer.material.color = _corOriginal;
     }
 
-    public void DamageText(float value, Color textColor)
+    public void Instantiate_DamageText(CombatResult result)
     {
         // Instancia o texto de dano
         var damage = Object.Instantiate(PrefabManager.Instance.damageText, enemy.transform.position, Quaternion.identity);
-        damage.SendMessage("SetText", value.ToString("F0"));
-        damage.SendMessage("SetTextColor", textColor);
+        DamageText text = damage.GetComponent<DamageText>();
+        text.ConfigureText(result);
     }
-
 }

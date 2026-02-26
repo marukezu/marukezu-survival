@@ -4,11 +4,12 @@ public class Snake_Boss : Monster
     public Snake_Boss() : base()
     {
         monsterType = MonsterType.SNAKE_BOSS;
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Snake_Boss_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Snake Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Snake_Boss_Desc);
 
         // Drops
-        
+
     }
 }

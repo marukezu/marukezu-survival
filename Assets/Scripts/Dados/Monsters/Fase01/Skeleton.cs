@@ -5,12 +5,12 @@ public class Skeleton : Monster
     public Skeleton() : base()
     {
         monsterType = MonsterType.SKELETON;
-        Name = "Skeleton";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Skeleton_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Skeleton Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Skeleton_Desc);
 
         // Drops
-        
+
     }
 }

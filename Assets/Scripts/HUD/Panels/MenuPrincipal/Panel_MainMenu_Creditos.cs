@@ -20,8 +20,8 @@ public class Panel_MainMenu_Creditos : Panel
 
     public override void AtualizarPainel()
     {
-        TXT_Credits.text = LanguageManager.Get("Credits");
-        TXT_CreditsBack.text = LanguageManager.Get("Back");
+        TXT_Credits.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Credits);
+        TXT_CreditsBack.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Back);
     }
     public void BtnCreditsVoltar()
     {

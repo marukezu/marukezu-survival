@@ -1,40 +1,72 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 public static class LanguageTexts_Panel_GamePlay
 {
-    private static void Register_SceneGamePlay_Panels_Texts()
+    public enum PanelGamePlayWords
     {
         // Level Up
-        LanguageManager.Register("Spell Level", "Nível das Magias", "Spell Level");
-        LanguageManager.Register("Choose A Spell", "Escolha um poder", "Choose A Spell");
+        SpellLevel,
+        ChooseASpell,
 
         // Character Info
-        LanguageManager.Register("Character Info", "Informação do Personagem", "Character Information");
-        LanguageManager.Register("Max HP", "Vida Máxima", "Max Health");
-        LanguageManager.Register("Mov Speed", "Vel. de Movimento", "Mov. Speed");
-        LanguageManager.Register("Collect Distance", "Distância de Coleta", "Collect Distance");
-        LanguageManager.Register("Cooldown Reduction", "Redução de Recarga", "Cooldown Reduction");
-        LanguageManager.Register("Damage Boost", "Aumento de Dano", "Damage Boost");
+        HeroInfo,
+        StatusBase,
+        ElementalModifier,
+        MaxHP,
+        MovSpeed,
+        CollectDistance,
+        CooldownReduction,
+        DamageBoost,
+
+        // Talents
+        TalentSelection,
 
         // Pause
-        LanguageManager.Register("Game Paused", "Jogo Pausado", "Game Paused");
-        LanguageManager.Register("Give Up", "Desistir", "Give Up");
-        LanguageManager.Register("Are You Sure", "Tem Certeza?", "Are you sure?");
+        GamePaused,
+        GiveUp,
+        AreYouSure,
 
         // Game Over
-        LanguageManager.Register("Game Over", "Fim de Jogo", "Game Over");
-        LanguageManager.Register("Time Survived", "Tempo Sobrevivido:", "Time Survived:");
-        LanguageManager.Register("Enemys Defeated", "Inimigos Derrotados:", "Enemys Defeated:");
+        GameOver,
+        TimeSurvived,
+        EnemiesDefeated,
 
         // Level Completed
-        LanguageManager.Register("Level Completed", "Nível Completo", "Level Completed");
-        LanguageManager.Register("Fase02 Unlocked", "Sertão Ventoso Desbloqueado!!", "Windy Backlands Unlocked!!");
+        LevelCompleted,
+        Fase02Unlocked,
     }
 
-    public static void RegisterAll()
+    public static readonly LangEntry<PanelGamePlayWords>[] Entries =
     {
-        Register_SceneGamePlay_Panels_Texts();
-    }
+        // Level Up
+        new(PanelGamePlayWords.SpellLevel, "Nível das Magias", "Spell Level"),
+        new(PanelGamePlayWords.ChooseASpell, "Escolha um poder", "Choose A Spell"),
+
+        // Hero Info
+        new(PanelGamePlayWords.HeroInfo, "Informação do Heroi", "Hero Information"),
+        new(PanelGamePlayWords.StatusBase, "Status Base", "Base Stats"),
+        new(PanelGamePlayWords.ElementalModifier, "Modificadores Elementais", "Elemental Modifiers"),
+        new(PanelGamePlayWords.MaxHP, "Vida Máxima", "Max Health"),
+        new(PanelGamePlayWords.MovSpeed, "Vel. de Movimento", "Mov. Speed"),
+        new(PanelGamePlayWords.CollectDistance, "Distância de Coleta", "Collect Distance"),
+        new(PanelGamePlayWords.CooldownReduction, "Redução de Recarga", "Cooldown Reduction"),
+        new(PanelGamePlayWords.DamageBoost, "Aumento de Dano", "Damage Boost"),
+
+        // Talents
+         new(PanelGamePlayWords.TalentSelection, "Seleção de Talentos", "Talents Selection"),
+
+        // Pause
+        new(PanelGamePlayWords.GamePaused, "Jogo Pausado", "Game Paused"),
+        new(PanelGamePlayWords.GiveUp, "Desistir", "Give Up"),
+        new(PanelGamePlayWords.AreYouSure, "Tem Certeza?", "Are you sure?"),
+
+        // Game Over
+        new(PanelGamePlayWords.GameOver, "Fim de Jogo", "Game Over"),
+        new(PanelGamePlayWords.TimeSurvived, "Tempo Sobrevivido:", "Time Survived:"),
+        new(PanelGamePlayWords.EnemiesDefeated, "Inimigos Derrotados:", "Enemies Defeated:"),
+
+        // Level Completed
+        new(PanelGamePlayWords.LevelCompleted, "Nível Completo", "Level Completed"),
+        new(PanelGamePlayWords.Fase02Unlocked, "Sertão Ventoso Desbloqueado!!", "Windy Backlands Unlocked!!"),
+    };
 }

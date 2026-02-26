@@ -11,8 +11,8 @@ public class Agility : Spell
         TypeTarget = TargetType.SINGLE;
         TypeCombat = CombatType.PROTECTION;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_Agility;
-        Name = LanguageManager.Get("Agility Name");
-        Descricao = LanguageManager.Get("Agility Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Agility_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.Agility_Desc);
         BaseDmg = 2f;
         BaseCooldown = 7f;
         PoderImpulsao = 0f;

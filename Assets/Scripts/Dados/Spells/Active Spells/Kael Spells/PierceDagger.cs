@@ -9,8 +9,8 @@ public class PierceDagger : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_PierceDagger;
-        Name = LanguageManager.Get("Pierce Dagger Name");
-        Descricao = LanguageManager.Get("Pierce Dagger Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.PierceDagger_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.PierceDagger_Desc);
         BaseDmg = 90;
         DamagePercentPerLevel = 5;
         BaseCooldown = 4f;

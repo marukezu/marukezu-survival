@@ -10,6 +10,7 @@ public class Potion
         Explosive,
         Restoration,
     }
+
     public PotionType typePotion;
     public string potionName;
     public Sprite potionIcon;

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     // O Hero que o jogador está na Scene de GamePlay.
-    public Hero_GameObject playerHero;
+    public Hero_GameObject playerHero { get; set; }
 
     // Armazena todos os orbs na partida.
     public List<GameObject> OrbsInScene = new List<GameObject>();
@@ -31,32 +31,36 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // Registra todos os Textos de idioma do jogo.
-        LanguageTexts_Events.RegisterAll();
-        LanguageTexts_Spells.RegisterAll();
-        LanguageTexts_Talents.RegisterAll();
-        LanguageTexts_Upgrades.RegisterAll();
-        LanguageTexts_Relics.RegisterAll();
-        LanguageTexts_Potions.RegisterAll();
-        LanguageTexts_Panel_MainMenu.RegisterAll();
-        LanguageTexts_Panel_GamePlay.RegisterAll();
-        LanguageTexts_BasicWords.RegisterAll();
+        RegisterLanguages();
+    }
+
+    private void RegisterLanguages()
+    {
+        // Registra todos os Textos de idioma do jogo.
+        LanguageManager.RegisterRange(LanguageTexts_BasicWords.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Spells.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Panel_GamePlay.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Events.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Panel_MainMenu.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Potions.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Relics.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Talents.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Heroes.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Enemy.Entries);
+        LanguageManager.RegisterRange(LanguageTexts_Tooltip_Spells.Entries);
     }
 
     // ====================================================
     // A GAME RUN CONFIGURATION
     // ====================================================
-    public void PrepareNewGame()
+    public void PrepareNewRun()
     {
         // Limpa variáveis
         OrbsInScene.Clear();
 
-        PlayerImage.ResetPlayerImage();
+        PlayerImage.PreparePlayerImage();
         HeroImage.PrepareHeroImage();
-
-        foreach (Spell spell in SpellsList.AllSpells)
-        {
-            spell.ResetSpell();
-        }
+        SpellsList.PrepareHeroSpell();
     }
 
     public IEnumerator CallGameOver()
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour
         // Reinicia as classes Statics
         PlayerImage.ResetPlayerImage();
         HeroImage.ResetHeroImage();
+        SpellsList.ResetSpells();
     }
 
     private IEnumerator OpenChests()

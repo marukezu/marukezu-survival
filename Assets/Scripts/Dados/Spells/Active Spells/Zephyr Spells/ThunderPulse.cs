@@ -9,8 +9,8 @@ public class ThunderPulse : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_ThunderPulse;
-        Name = LanguageManager.Get("Thunder Pulse Name");
-        Descricao = LanguageManager.Get("Thunder Pulse Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ThunderPulse_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ThunderPulse_Desc);
         BaseDmg = 65f;
         DamagePercentPerLevel = 2;
         BaseCooldown = 5.25f;

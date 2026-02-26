@@ -37,19 +37,22 @@ public class Panel : MonoBehaviour
         PanelManager.Instance.UnregisterPanel(this);
     }
 
+    private void Awake()
+    {
+        // Inicializa uma vez o painel.
+        if (!Initialized)
+        {
+            Initialize();
+            Initialized = true;
+        }
+    }
+
     private void Update()
     {
         // Atualiza sempre que o painel estiver ativo.
         if (gameObject.activeSelf)
         {
             AtualizarPainel();
-        }
-
-        // Inicializa uma vez o painel.
-        if (!Initialized)
-        {
-            Initialize();
-            Initialized = true;
         }
     }
 

@@ -9,8 +9,8 @@ public class ExplosiveArrow : Spell
         TypeTarget = TargetType.MULTIPLE;
         TypeCombat = CombatType.DAMAGE;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_ExplosiveArrow;
-        Name = LanguageManager.Get("Explosive Arrow Name");
-        Descricao = LanguageManager.Get("Explosive Arrow Description");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ExplosiveArrow_Name);
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ExplosiveArrow_Desc);
         BaseDmg = 75;
         DamagePercentPerLevel = 2;
         BaseCooldown = 4f;

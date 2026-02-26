@@ -40,10 +40,10 @@ public class Panel_MainMenu_BotoesPrincipais : Panel
         BTN_ChangeLog.onClick.AddListener(() => BTN_ChangeLog_Action());
         BTN_CloseGame.onClick.AddListener(() => BTN_CloseGame_Action());
 
-        TXT_Play.text = LanguageManager.Get("Play");
-        TXT_Exit.text = LanguageManager.Get("Exit");
-        TXT_Upgrades.text = LanguageManager.Get("Upgrades");
-        TXT_Bestiary.text = LanguageManager.Get("Bestiary");
+        TXT_Play.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Play);
+        TXT_Exit.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Exit);
+        TXT_Upgrades.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Upgrades);
+        TXT_Bestiary.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Bestiary);
         TXT_Game_Version.text = GameConfig._gameVersion;
     }
 

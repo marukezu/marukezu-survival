@@ -4,10 +4,10 @@ public class Bat_Boss : Monster
     public Bat_Boss() : base()
     {
         monsterType = MonsterType.BAT_BOSS;
-        Name = "BatBoss";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Bat_Boss_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Bat Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Bat_Boss_Desc);
 
         // Drops
         

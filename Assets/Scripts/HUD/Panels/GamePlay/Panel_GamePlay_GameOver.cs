@@ -17,13 +17,13 @@ public class Panel_GamePlay_GameOver : Panel
 
     public override void AtualizarPainel()
     {
-        TXT_GameOver.text = LanguageManager.Get("Game Over");
-        TXT_TimeSurvived.text = LanguageManager.Get("Time Survived");
+        TXT_GameOver.text = LanguageManager.Get(LanguageTexts_Panel_GamePlay.PanelGamePlayWords.GameOver);
+        TXT_TimeSurvived.text = LanguageManager.Get(LanguageTexts_Panel_GamePlay.PanelGamePlayWords.TimeSurvived);
         TXT_TimeSurvivedValue.text = LevelController.Instance.TimerDaFase();
-        TXT_EnemysDefeated.text = LanguageManager.Get("Enemys Defeated");
+        TXT_EnemysDefeated.text = LanguageManager.Get(LanguageTexts_Panel_GamePlay.PanelGamePlayWords.EnemiesDefeated);
         TXT_EnemysDefeatedValue.text = PlayerImage.inimigosDerrotados.ToString();
         TXT_MoneyFeito.text = PlayerImage.moneyFeito.ToString();
-        TXT_BtnBackMenu.text = LanguageManager.Get("Back");
+        TXT_BtnBackMenu.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Back);
     }
 
     public void BTN_VoltarMenu_Action()

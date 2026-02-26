@@ -4,11 +4,12 @@ public class Caixao_Boss : Monster
     public Caixao_Boss() : base()
     {
         monsterType = MonsterType.CAIXAO_BOSS;
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Caixao_Boss_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Caixao Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Caixao_Boss_Desc);
 
         // Drops
-        
+
     }
 }

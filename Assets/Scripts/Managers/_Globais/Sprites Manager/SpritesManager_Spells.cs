@@ -56,6 +56,7 @@ public class SpritesManager_Spells : MonoBehaviour
     public Sprite Spell_CombatType_Damage;
     public Sprite Spell_CombatType_Healing;
     public Sprite Spell_CombatType_Protection;
+    public Sprite Spell_CombatType_Summon;
 
     [Header("====== Spells Status ======")]
     public Sprite Spell_Recasts;

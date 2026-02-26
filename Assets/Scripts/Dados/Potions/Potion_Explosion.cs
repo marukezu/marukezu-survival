@@ -9,7 +9,7 @@ public class Potion_Explosion : Potion
     public Potion_Explosion() 
     {
         typePotion = PotionType.Explosive;
-        potionName = LanguageManager.Get("Potion Explosion");
+        potionName = LanguageManager.Get(LanguageTexts_Potions.PotionWords.PotionExplosion_Name);
         potionIcon = SpritesManager.Instance.potionsSprites.potion_explosion_icon;
         potionPrice = 750;
         maxQuantity = 2;

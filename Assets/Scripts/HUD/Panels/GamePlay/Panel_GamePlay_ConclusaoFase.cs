@@ -38,10 +38,10 @@ public class Panel_GamePlay_ConclusaoFase : Panel
 
     public override void AtualizarPainel()
     {
-        TXT_GameOver.text = LanguageManager.Get("Game Over");
+        TXT_GameOver.text = LanguageManager.Get(LanguageTexts_Panel_GamePlay.PanelGamePlayWords.GameOver);
 
         // Tempo Sobrevivido
-        TXT_TimeSurvivedLabel.text = LanguageManager.Get("Time Survived");
+        TXT_TimeSurvivedLabel.text = LanguageManager.Get(LanguageTexts_Panel_GamePlay.PanelGamePlayWords.TimeSurvived);
         TXT_TimeSurvivedValue.text = LevelController.Instance.TimerDaFase();
 
         // Money Feito
@@ -51,11 +51,11 @@ public class Panel_GamePlay_ConclusaoFase : Panel
         TXT_ChestsEarned.text = PlayerImage.bausRecebidos.ToString();
 
         // Inimigos derrotados
-        TXT_EnemiesDefeatedLabel.text = LanguageManager.Get("Enemys Defeated");
+        TXT_EnemiesDefeatedLabel.text = LanguageManager.Get(LanguageTexts_Panel_GamePlay.PanelGamePlayWords.EnemiesDefeated);
         TXT_EnemiesDefeatedValue.text = PlayerImage.inimigosDerrotados.ToString();
 
         // Textos de Botões
-        TXT_BtnMainMenu.text = LanguageManager.Get("Back");
+        TXT_BtnMainMenu.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Next);
     }
 
     public void BTN_VoltarMenu_Action()

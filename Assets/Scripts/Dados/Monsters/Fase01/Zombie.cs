@@ -4,9 +4,9 @@ public class Zombie : Monster
     public Zombie() : base()
     {
         monsterType = MonsterType.ZOMBIE;
-        Name = "Zombie";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Zombie_Name);
         Health = HEALTH_BASE;
         Speed = SPEED_BASE;
-        Description = LanguageManager.Get("Zombie Description");        
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Zombie_Desc);
     }
 }

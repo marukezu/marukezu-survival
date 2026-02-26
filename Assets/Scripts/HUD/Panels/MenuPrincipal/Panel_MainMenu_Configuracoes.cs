@@ -45,12 +45,12 @@ public class Panel_MainMenu_Configuracoes : Panel
 
     public override void AtualizarPainel()
     {
-        TXT_OptionsGameOptions.text = LanguageManager.Get("Game Options");
-        TXT_OptionsMusicVolume.text = LanguageManager.Get("Music Volume");
-        TXT_OptionsSoundEffectsVolume.text = LanguageManager.Get("Sound Effect Volume");
-        TXT_OptionsBtnBack.text = LanguageManager.Get("Back");
-        TXT_OptionsChuvaVolume.text = LanguageManager.Get("Sound Chuva Volume");
-        TXT_OptionsTrovaoVolume.text = LanguageManager.Get("Sound Trovão Volume");
+        TXT_OptionsGameOptions.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.GameOptions);
+        TXT_OptionsMusicVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.MusicVolume);
+        TXT_OptionsSoundEffectsVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.SoundEffectVolume);
+        TXT_OptionsBtnBack.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.Back);
+        TXT_OptionsChuvaVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.SoundChuvaVolume);
+        TXT_OptionsTrovaoVolume.text = LanguageManager.Get(LanguageTexts_BasicWords.BasicWords.SoundTrovaoVolume);
 
         OnToggleModoJanelaChanged();
         //OnDropdownResolucoesChanged();

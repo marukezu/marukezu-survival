@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Monster;
 
@@ -12,7 +13,7 @@ public class Enemy_GameObject : Creature
 
     // Configuração do inimigo.
     [HideInInspector] public Monster monster;
-    [HideInInspector] public float originalSpeed;
+    [HideInInspector] public float originalSpeed => SetMonsterSpeed();
     [HideInInspector] public bool droppedLoot;
 
     // Ajuste de Drop.
@@ -28,6 +29,9 @@ public class Enemy_GameObject : Creature
     [HideInInspector] public CapsuleCollider2D _capsuleCollider;
 
     [HideInInspector] public Vector2 direcao;
+
+    // flags
+    private bool monsterStarted = false;
 
     protected virtual void Update()
     {
@@ -66,18 +70,7 @@ public class Enemy_GameObject : Creature
         if (baseMonster != null)
             monster = new Monster(baseMonster, nivel);
 
-        // Armazena dados principais
-        if (isSiege)
-        {
-            monster.Speed = 0.15f;
-            originalSpeed = 0.15f;
-
-            _enemyRigidbody.mass = 1000;
-        }
-        else
-        {
-            originalSpeed = monster.Speed;
-        }
+        monsterStarted = true;
     }
 
     // ===================================================================
@@ -104,11 +97,21 @@ public class Enemy_GameObject : Creature
     // ===================================================================
     // ======================== ANIMAÇÃO E MORTE =========================
     // ===================================================================
-    public void ReceberDano(float quantidade, Color textColor)
+    public void ReceberDano(CombatResult result)
     {
-        monster.Health -= quantidade;
+        // Checagem de Crítico.
+        if (result.isCritical)
+            monster.Health -= result.finalDamage * (HeroImage.GetHeroCriticalMultiplier() / 100);
 
-        animations.DamageText(quantidade, textColor);
+        else
+            monster.Health -= result.finalDamage;
+
+        // Texto de Dano, Efeito do dano.
+        animations.Instantiate_DamageText(result);
+        Instantiate_DamageEffect(result);
+
+        // "Pisca" Cor quando recebe dano.
+        animations.AtivaAnimacaoDano(Color.red);
 
         if (monster.Health <= 0)
             Death();
@@ -132,6 +135,30 @@ public class Enemy_GameObject : Creature
 
             // Destroi o gameObject do monster
             Destroy(gameObject, 0.5f);
+        }
+    }
+
+    private void Instantiate_DamageEffect(CombatResult result)
+    {
+        switch (result.element)
+        {
+            case Spell.Elemento.PHYSICAL:
+                PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Physical, transform); break;
+
+            case Spell.Elemento.FIRE:
+                PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Fire, transform); break;
+
+            case Spell.Elemento.ICE:
+                PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Ice, transform); break;
+
+            case Spell.Elemento.THUNDER:
+                PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Thunder, transform); break;
+
+            case Spell.Elemento.POISON:
+                PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Poison, transform); break;
+
+            default:
+                PrefabManager.Instance.InstantiateEffectPrefab(PrefabManager_Effects.EffectType.Physical, transform); break;
         }
     }
 
@@ -165,5 +192,22 @@ public class Enemy_GameObject : Creature
 
             droppedLoot = true;
         }
+    }
+
+    // ===================================================================
+    // ============================= STATUS ==============================
+    // ===================================================================
+    private float SetMonsterSpeed()
+    {
+        if (!monsterStarted)
+            return 0f;
+
+        float baseSpeed = monster.Speed;
+
+        // Se estiver Frozen.
+        if (conditions.isFrozen)
+            baseSpeed *= 0.5f;
+
+        return baseSpeed;
     }
 }

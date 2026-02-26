@@ -119,6 +119,9 @@ public class Spell : ThingData
     public int SpellLevel { get; set; }
     public int LevelMax { get; set; }
 
+    // Summons config
+    public int MaxSummon { get; set; } // O máximo desse summon que pode existir ao mesmo tempo
+
     // Spell Conditions
     public bool statusPoison { get; set; }
     public bool statusFreeze { get; set; }
@@ -143,21 +146,6 @@ public class Spell : ThingData
     {
         // Escuta global da spell
         OnSpellCast?.Invoke();
-    }
-
-    public virtual void ResetSpell() 
-    {
-        foreach (Spell spell in SpellsList.AllSpells)
-        {
-            if (spell == HeroImage.active1)
-            {
-                spell.SpellLevel = 1;
-            }
-            else
-            {
-                spell.SpellLevel = 0;
-            }
-        }
     }
 
     public void DoCooldown()
@@ -185,7 +173,11 @@ public class Spell : ThingData
 
     public float GetSpellDamage()
     {
+        // Referência ao Hero.
         Hero_GameObject hero = GameManager.Instance.playerHero;
+
+        if (hero == null)
+            return BaseDmg;
 
         float heroDamageBonus = HeroImage.GetHeroDamageBoost();
         float heroTalentBonus = 0f;
@@ -194,28 +186,27 @@ public class Spell : ThingData
         switch (SpellElement)
         {
             case Elemento.PHYSICAL:
-                heroTalentBonus = hero.heroTalents.BrutamontesLevel * Hero_Talents.BRUTAMONTES_BASE_BUFF;
+                heroTalentBonus = hero.heroTalents.GetLevel(Hero_Talents.TalentType.Fisico) * Hero_Talents.GetBaseBuff(Hero_Talents.TalentType.Fisico);
                 break;
 
             case Elemento.DISTANCE:
-                heroTalentBonus = hero.heroTalents.AtiradorEliteLevel * Hero_Talents.ATIRADOR_ELITE_BASE_BUFF;
+                heroTalentBonus = hero.heroTalents.GetLevel(Hero_Talents.TalentType.Distancia) * Hero_Talents.GetBaseBuff(Hero_Talents.TalentType.Distancia);
                 break;
 
             case Elemento.FIRE:
-                heroTalentBonus = hero.heroTalents.PiromaniacoLevel * Hero_Talents.PIROMANIACO_BASE_BUFF;
+                heroTalentBonus = hero.heroTalents.GetLevel(Hero_Talents.TalentType.Fogo) * Hero_Talents.GetBaseBuff(Hero_Talents.TalentType.Fogo);
                 break;
 
             case Elemento.ICE:
-                heroTalentBonus = hero.heroTalents.ToqueCongelanteLevel * Hero_Talents.TOQUE_CONGELANTE_BASE_BUFF;
+                heroTalentBonus = hero.heroTalents.GetLevel(Hero_Talents.TalentType.Gelo) * Hero_Talents.GetBaseBuff(Hero_Talents.TalentType.Gelo);
                 break;
 
             case Elemento.THUNDER:
-                heroTalentBonus = hero.heroTalents.TeslaLevel * Hero_Talents.TESLA_BASE_BUFF;
-                Debug.Log("Bonus de multiplicador de dano: " + heroTalentBonus);
+                heroTalentBonus = hero.heroTalents.GetLevel(Hero_Talents.TalentType.Eletrico) * Hero_Talents.GetBaseBuff(Hero_Talents.TalentType.Eletrico);
                 break;
 
             case Elemento.POISON:
-                heroTalentBonus = (hero.heroTalents.PestilentoLevel * Hero_Talents.PESTILENTO_BASE_BUFF) / 100f;
+                heroTalentBonus = (hero.heroTalents.GetLevel(Hero_Talents.TalentType.Veneno) * Hero_Talents.GetBaseBuff(Hero_Talents.TalentType.Veneno)) / 100f;
                 break;
         }
 

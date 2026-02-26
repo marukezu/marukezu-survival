@@ -1,43 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-// Essa classe representa um evento aleatório que pode acontecer na geração das "Fases",
-// Ciclos que acontecem a todo minuto. Veja mais info em (LevelController)
 public abstract class Event
 {
-    public enum EventType
+    public enum EventCategory
     {
-        SIEGE,
-        MINIBOSS_FIGHT,
-        BOSS_FIGHT,
-        DOUBLE_SPAWNRATE,
-        PURISSIMA, // VENDEDORA QUE APARECE
+        Negative,
+        Positive
     }
 
-    public EventType TypeEvent;
+    public EventCategory Category { get; protected set; }
+    public float Weight { get; protected set; } = 1f;
 
-    public float Duration { get; protected set; }
+    public float Duration { get; protected set; } = 30f;
     public float TimeSinceStart { get; private set; }
 
-    public bool eventCompleted = false;
+    public bool HasStarted { get; private set; }
+    public bool IsCompleted { get; private set; }
 
-    public Event(EventType type)
+    protected Event(EventCategory category, float weight = 1f)
     {
-        this.TypeEvent = type;
+        Category = category;
+        Weight = Mathf.Max(0.0001f, weight);
     }
 
-    // Esse método é responsável por fazer acontecer o evento.
-    public abstract void DoEvent();
-    public virtual void UpdateEvent(float deltaTime)
-    {
-        TimeSinceStart += deltaTime;
+    protected abstract void OnStart();
 
-        if (TimeSinceStart >= Duration)
+    protected virtual void OnTick(float deltaTime) { }
+
+    protected virtual void OnFinish() { }
+
+    protected virtual bool ShouldFinish()
+    {
+        return TimeSinceStart >= Duration;
+    }
+
+    public void StartEvent()
+    {
+        if (HasStarted) return;
+
+        HasStarted = true;
+        TimeSinceStart = 0f;
+        IsCompleted = false;
+
+        OnStart();
+    }
+
+    public void UpdateEvent(float deltaTime)
+    {
+        if (!HasStarted || IsCompleted) return;
+
+        TimeSinceStart += deltaTime;
+        OnTick(deltaTime);
+
+        if (ShouldFinish())
             FinishEvent();
     }
-    protected virtual void FinishEvent()
+
+    public void FinishEvent()
     {
-        eventCompleted = true;
+        if (IsCompleted) return;
+
+        IsCompleted = true;
+        OnFinish();
     }
 }

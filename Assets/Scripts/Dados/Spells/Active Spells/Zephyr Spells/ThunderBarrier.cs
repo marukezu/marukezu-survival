@@ -11,12 +11,12 @@ public class ThunderBarrier : Spell
         TypeTarget = TargetType.SINGLE;
         TypeCombat = CombatType.PROTECTION;
         SpriteIcon = SpritesManager.Instance.spellSprites.Spell_ThunderBarrier;
-        Name = LanguageManager.Get("Thunder Barrier Name");
+        Name = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ThunderBarrier_Name);
         BaseDmg = 2f;
         BaseCooldown = 7f;
         PoderImpulsao = 0f;
         LevelMax = 1;
-        Descricao = LanguageManager.Get("Thunder Barrier Description");
+        Descricao = LanguageManager.Get(LanguageTexts_Spells.SpellWords.ThunderBarrier_Desc);
     }
 
     public override void Cast(Creature caster)

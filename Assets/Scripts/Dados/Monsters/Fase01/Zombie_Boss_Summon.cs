@@ -10,9 +10,9 @@ public class Zombie_Boss_Summon : Monster
     public Zombie_Boss_Summon() : base()
     {
         monsterType = MonsterType.ZOMBIE_BOSS_SUMMON;
-        Name = "Zombie";
+        Name = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Zombie_Name);
         Health = HEALTH_BASE;
         Speed = 2.5f;
-        Description = LanguageManager.Get("Zombie Description");
+        Description = LanguageManager.Get(LanguageTexts_Enemy.EnemyWords.Zombie_Desc);
     }
 }
